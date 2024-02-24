@@ -1,40 +1,70 @@
 const services = [
-    {
-        title: "Social media marketing",
-        description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti qui soluta cupiditate",
-        icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5" />
-        </svg>`,
-    },
-    {
-        title: "Amazon affiliate marketing",
-        description: "Sunt, ipsam, necessitatibus sint fugit officia laboriosam minima ab ullam at magni et. Quaerat, sint!",
-        icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5" />
-        </svg>`,
-    },
-    {
-        title: "Email marketing",
-        description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti qui soluta cupiditate",
-        icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5" />
-        </svg>`,
-    },
-    {
-        title: "Social media marketing",
-        description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti qui soluta cupiditate",
-        icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5" />
-        </svg>`,
-    },
-    {
-        title: "Amazon affiliate marketing",
-        description: "Sunt, ipsam, necessitatibus sint fugit officia laboriosam minima ab ullam at magni et. Quaerat, sint!",
-        icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5" />
-        </svg>`,
-    },
-    {
-        title: "Email marketing",
-        description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti qui soluta cupiditate",
-        icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5" />
-        </svg>`,
-    },
+  {
+    title: "Easy to Integrate",
+    description:
+      "Build model as a native or WebAssembly  library, and integrate with your existing systems.",
+  },
+  {
+    title: "Wide Range of Platforms",
+    description:
+      "Native libraries with the support for most modern platforms. WebAssembly support for running in a web browser.",
+  },
+  {
+    title: "Ease of Deployment",
+    description:
+      "No additional dependencies. No need to change your existing deployment process.",
+  },
+  {
+    title: "Fast and Efficient",
+    description: "Small download size. Low memory usage.",
+  },
+  {
+    title: "For Software Developers",
+    description:
+      "Designed for software developers. No need to learn new tools or languages.",
+  },
+  {
+    title: "Performance",
+    description:
+      "Native code. Uses your CPUs to its full potential. No garbage collection pauses.",
+  },
 ];
 
-export { services };
+enum ComponentState {
+  inuse,
+  planning,
+}
+
+const components = [
+  {
+    title: "Uchen Runtime",
+    description:
+      "The Uchen Runtime is a C++20 high performance, efficient and easy to " +
+      "integrate library for running machine learning models. Compatible with " +
+      "most modern platforms.",
+    state: ComponentState.inuse,
+  },
+  {
+    title: "Uchen Core",
+    description:
+      "The Uchen Core is a C++20 library and collection command-line tools for training " +
+      "machine learning models. Current focus is on supporting common workflows and " +
+      "focus on reinforcement learning algorithms.",
+    state: ComponentState.inuse,
+  },
+  {
+    title: "Uchen Console",
+    description:
+      "A hosted tool for quick onboarding and testing of Uchen models. Provides a direct " +
+      "download to WebAssembly, without the need to build the model yourself.",
+    state: ComponentState.planning,
+  },
+  {
+    title: "Uchen Brain Surgeon",
+    description:
+      "A hosted tool for debugging and refactoring Uchen models. Provides deep insights into the " +
+      'model "way of thinking" and encourages teams to experiment with new ideas.',
+  },
+];
+
+export { components, services };
