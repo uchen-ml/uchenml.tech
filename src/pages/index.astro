@@ -2,15 +2,13 @@
 import Layout from '../layouts/Layout.astro';
 import Hero from '../components/sections/Hero.astro';
 import Services from '../components/sections/Services.astro';
-import Features from '../components/sections/Features.astro';
-import CTA from '../components/sections/CTA.astro';
+import Components from '../components/sections/Components.astro';
 ---
 
-<Layout title="Welcome to AgenceX">
-	<main class="flex flex-col gap-y-20 md:gap-y-32 overflow-hidden">
+<Layout title="Welcome to Uchen ML">
+	<main class="flex flex-col gap-y-20 md:gap-y-32 overflow-hidden bg-slate-200 dark:bg-current">
 		<Hero/>
 		<Services/>
-		<!-- <AboutUs/> -->
-		<Features/>
+		<Components/>
 	</main>
 </Layout>

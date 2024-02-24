@@ -43,6 +43,7 @@ const components = [
       "integrate library for running machine learning models. Compatible with " +
       "most modern platforms.",
     state: ComponentState.inuse,
+    color: "fuchsia-500",
   },
   {
     title: "Uchen Core",
@@ -51,6 +52,7 @@ const components = [
       "machine learning models. Current focus is on supporting common workflows and " +
       "focus on reinforcement learning algorithms.",
     state: ComponentState.inuse,
+    color: "indigo-300",
   },
   {
     title: "Uchen Console",
@@ -58,12 +60,14 @@ const components = [
       "A hosted tool for quick onboarding and testing of Uchen models. Provides a direct " +
       "download to WebAssembly, without the need to build the model yourself.",
     state: ComponentState.planning,
+    color: "orange-500",
   },
   {
     title: "Uchen Brain Surgeon",
     description:
       "A hosted tool for debugging and refactoring Uchen models. Provides deep insights into the " +
       'model "way of thinking" and encourages teams to experiment with new ideas.',
+    color: "cyan-500",
   },
 ];
 
