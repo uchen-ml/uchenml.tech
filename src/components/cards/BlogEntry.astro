@@ -1,0 +1,25 @@
+---
+export interface Props {
+  entry: any;
+}
+
+const { entry } = Astro.props as Props;
+const { Content } = await entry.render();
+---
+
+<div
+  class="grow p-5 sm:p-6 lg:p-8 rounded-md border border-box-border bg-box-bg shadow-lg shadow-box-shadow relative overflow-hidden"
+>
+  <div class="space-y-4 relative">
+    <div
+      class="prose dark:prose-invert
+        prose-h1:font-bold prose-h1:text-2xl
+        prose-a:text-blue-600 prose-p:text-justify prose-img:rounded-xl"
+    >
+      <Content />
+    </div>
+    <span
+      class="absolute w-32 aspect-square -bottom-16 -right-16 bg-primary/10 rounded-full"
+    ></span>
+  </div>
+</div>
