@@ -1,7 +1,7 @@
 {
-  "name": "@onwidget/astrowind",
-  "version": "1.0.0-beta.31",
-  "description": "AstroWind: A free template using Astro 4.0 and Tailwind CSS. Astro starter theme.",
+  "name": "@uchen-ml/uchenml-tech",
+  "version": "0.0.1",
+  "description": "Uchen ML landing page.",
   "type": "module",
   "private": true,
   "engines": {
