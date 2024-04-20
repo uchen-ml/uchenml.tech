@@ -15,40 +15,33 @@ const metadata = {
 
   <Hero
     actions={[
-      {
-        variant: 'primary',
-        text: 'Get template',
-        href: 'https://github.com/onwidget/astrowind',
-        target: '_blank',
-        icon: 'tabler:download',
-      },
-      { text: 'Learn more', href: '#features' },
+      // {
+      //   variant: 'primary',
+      //   text: 'Get template',
+      //   href: 'https://github.com/onwidget/astrowind',
+      //   target: '_blank',
+      //   icon: 'tabler:download',
+      // },
+      { text: 'Blog', href: '/blog' },
     ]}
     image={{ src: '~/assets/images/hero-image.png', alt: 'AstroWind Hero Image' }}
   >
     <Fragment slot="title">
-      Free template for <span class="hidden xl:inline">creating websites with</span>
-      <span class="text-accent dark:text-white highlight"> Astro 4.0</span> + Tailwind CSS
+      This will be an <span class="text-accent highlight dark:text-orange-700">Uchen ML</span> landing page
     </Fragment>
 
     <Fragment slot="subtitle">
-      <span class="hidden sm:inline">
-        <span class="font-semibold">AstroWind</span> is a free, customizable and production-ready template for Astro 4.0
-        + Tailwind CSS.</span
-      >
-      <span class="block mb-1 sm:hidden font-bold text-blue-600">AstroWind: Production-ready.</span>
-      Suitable for Startups, Small Business, SaaS websites, Professional Portfolios, Marketing websites, Landing Pages &
-      Blogs.
-    </Fragment>
+      <span class="font-semibold">Uchen ML</span> is almost ready to be revealed. For now, visit the blog page for some technical
+      details.</Fragment
+    >
   </Hero>
 
   <!-- HighlightedPosts Widget ******* -->
 
-  <BlogLatestPosts
-    title="Find out more content in our Blog"
-    information={`The blog is used to display AstroWind documentation.
+  <BlogLatestPosts title="Latest updates:" />
+  <!-- information={`The blog is used to display AstroWind documentation.
                         Each new article will be an important step that you will need to know to be an expert in creating a website using Astro + Tailwind CSS.
                         Astro is a very interesting technology. Thanks.
-                `}
-  />
+                `} -->
+  <!-- /> -->
 </Layout>

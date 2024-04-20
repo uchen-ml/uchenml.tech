@@ -3,21 +3,8 @@ import { getPermalink, getBlogPermalink, getAsset } from './utils/permalinks';
 export const headerData = {
   links: [
     {
-      text: 'Homes',
+      text: 'Home',
       href: getPermalink('/'),
-    },
-    {
-      text: 'Pages',
-      links: [
-        {
-          text: 'About us',
-          href: getPermalink('/about'),
-        },
-        {
-          text: 'Contact',
-          href: getPermalink('/contact'),
-        },
-      ],
     },
     {
       text: 'Blog',
@@ -52,7 +39,7 @@ export const footerData = {
     {
       title: 'Company',
       links: [
-        { text: 'About', href: '#' },
+        // { text: 'About', href: '#' },
         { text: 'Blog', href: '#' },
       ],
     },
