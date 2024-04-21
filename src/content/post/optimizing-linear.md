@@ -181,7 +181,7 @@ bazel run -c opt --cxxopt="-g" --cxxopt="-march=native" //benchmark:linear
 |8, 2500 |  1080 ns|
 
 This "optimization" shows pretty solid across the board. Ultimately, it will be
-up to embedders to decide CPU target to compile for.
+up to embedders to decide the CPU target to compile for.
 
 ## A bigger layer
 
@@ -204,9 +204,9 @@ The worst case is "only" 2x slower than the best case.
 ## Using SIMD intrinsics directly
 
 As mentioned above, SIMD intrinsics are not considered (i.e. Web Assembly still
-is not using it). However, it is interesting to see what the performance would
-be if SIMD instructions were used. I did not use AVX as data alignment is not
-supported yet, though this will change soon.
+has no support for them). However, it is still interesting to see what
+the performance gains could be if we tried them. I did not use AVX as data
+alignment is not supported yet, though this will change soon.
 
 ```c++
   output_t operator()(
@@ -245,9 +245,9 @@ supported yet, though this will change soon.
 |8, 1000000 |3214760 ns |
 
 "Good" cases worsened, which shows that the updated code is ran. Shape of
-the data is known at compile time when using Uchen so the compilers may make
-informed decisions about vectorization and other optimizations. Uchen will use
-data structures aligned to 32 bytes to enable more optimizations.
+the data is known at compile time when using Uchen so the compilers make
+informed decisions about vectorization and other optimizations and it looks
+like competing with them is an unnecessary exercise.
 
 Manually unrolling the loop yields similar results:
 

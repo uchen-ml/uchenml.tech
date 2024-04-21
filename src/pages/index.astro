@@ -2,7 +2,6 @@
 import Layout from '~/layouts/PageLayout.astro';
 
 import Hero from '~/components/widgets/Hero.astro';
-import BlogLatestPosts from '~/components/widgets/BlogLatestPosts.astro';
 import BlogList from '~/components/blog/List.astro';
 import { findLatestPosts } from '~/utils/blog';
 
@@ -45,7 +44,6 @@ const posts = await findLatestPosts({ count: 10 });
     </Fragment>
   </Hero>
 
-  <!-- HighlightedPosts Widget ******* -->
   <div class="mx-24">
     <BlogList posts={posts} />
   </div>

@@ -11,14 +11,14 @@ metadata:
   title:
     default: UchenML
     template: '%s — UchenML'
-  description: "\U0001F680 Suitable for Startups, Small Business, Sass Websites, Professional Portfolios, Marketing Websites, Landing Pages & Blogs."
+  description: "Machine Learning framework for software developers"
   robots:
     index: true
     follow: true
   openGraph:
     site_name: UchenML
     images:
-      - url: '~/assets/images/default.png'
+      - url: '~/assets/images/transparent.png'
         width: 1200
         height: 628
     type: website
