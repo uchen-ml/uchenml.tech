@@ -1,6 +1,7 @@
 ---
 publishDate: 2024-04-20T00:00:00Z
 author: Eugene Ostroukhov
+authorLink: https://www.linkedin.com/in/eostroukhov/
 title: Case Study - Optimizing Linear Layer
 excerpt: This case study details the process of optimizing linear layer performance without breaking the core Uchen ML requirements.
 category: Case Studies

@@ -24,11 +24,13 @@ export interface Post {
   image?: ImageMetadata | string;
 
   /**  */
-  category?: Taxonomy
+  category?: Taxonomy;
   /**  */
   tags?: Taxonomy[];
   /**  */
   author?: string;
+
+  authorLink?: string;
 
   /**  */
   metadata?: MetaData;
