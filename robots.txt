@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://uchenml.tech/sitemap-index.xml
+
+Sitemap: https://uchenml.tech/sitemap-index.xml
