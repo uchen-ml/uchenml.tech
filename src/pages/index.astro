@@ -3,11 +3,15 @@ import Layout from '~/layouts/PageLayout.astro';
 
 import Hero from '~/components/widgets/Hero.astro';
 import BlogLatestPosts from '~/components/widgets/BlogLatestPosts.astro';
+import BlogList from '~/components/blog/List.astro';
+import { findLatestPosts } from '~/utils/blog';
 
 const metadata = {
   title: 'Uchen ML - Pragmatic Machine Learning',
   ignoreTitleTemplate: true,
 };
+
+const posts = await findLatestPosts({ count: 10 });
 ---
 
 <Layout metadata={metadata}>
@@ -22,7 +26,7 @@ const metadata = {
       //   target: '_blank',
       //   icon: 'tabler:download',
       // },
-      { text: 'Blog', href: '/blog' },
+      // { text: 'Blog', href: '/blog' },
     ]}
   >
     <Fragment slot="title">
@@ -33,11 +37,7 @@ const metadata = {
   </Hero>
 
   <!-- HighlightedPosts Widget ******* -->
-
-  <BlogLatestPosts title="Latest updates:" />
-  <!-- information={`The blog is used to display AstroWind documentation.
-                        Each new article will be an important step that you will need to know to be an expert in creating a website using Astro + Tailwind CSS.
-                        Astro is a very interesting technology. Thanks.
-                `} -->
-  <!-- /> -->
+  <div class="mx-24">
+    <BlogList posts={posts} />
+  </div>
 </Layout>
