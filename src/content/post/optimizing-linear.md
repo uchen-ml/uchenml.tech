@@ -219,6 +219,8 @@ supported yet, though this will change soon.
     for (size_t i = 0; i < Input::elements; i += 4) {
       __m128 input = _mm_loadu_ps(&(*inputs.begin()) + i);
       for (size_t j = 0; j < Outputs; ++j) {
+        // Parameters are accessed in the wrong order - this is a bug!
+        // This code is for benchmark only.
         __m128 parameters = _mm_load_ps(&(*it));
         __m128 product = _mm_dp_ps(input, parameters, 0xf1);
         it += 4;
