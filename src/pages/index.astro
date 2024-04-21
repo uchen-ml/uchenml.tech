@@ -1,14 +1,43 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Hero from '../components/sections/Hero.astro';
-import Services from '../components/sections/Services.astro';
-import Components from '../components/sections/Components.astro';
+import Layout from '~/layouts/PageLayout.astro';
+
+import Hero from '~/components/widgets/Hero.astro';
+import BlogLatestPosts from '~/components/widgets/BlogLatestPosts.astro';
+
+const metadata = {
+  title: 'Uchen ML - Pragmatic Machine Learning',
+  ignoreTitleTemplate: true,
+};
 ---
 
-<Layout title="Welcome to Uchen ML">
-	<main class="flex flex-col gap-y-20 md:gap-y-32 overflow-hidden bg-slate-200 dark:bg-current">
-		<Hero/>
-		<Services/>
-		<Components/>
-	</main>
+<Layout metadata={metadata}>
+  <!-- Hero Widget ******************* -->
+
+  <Hero
+    actions={[
+      // {
+      //   variant: 'primary',
+      //   text: 'Get template',
+      //   href: 'https://github.com/onwidget/astrowind',
+      //   target: '_blank',
+      //   icon: 'tabler:download',
+      // },
+      { text: 'Blog', href: '/blog' },
+    ]}
+  >
+    <Fragment slot="title">
+      <span class="text-accent highlight dark:text-orange-600">Uchen ML</span> is under construction. Stay tuned for updates.
+    </Fragment>
+
+    <Fragment slot="subtitle">Code is still being written...</Fragment>
+  </Hero>
+
+  <!-- HighlightedPosts Widget ******* -->
+
+  <BlogLatestPosts title="Latest updates:" />
+  <!-- information={`The blog is used to display AstroWind documentation.
+                        Each new article will be an important step that you will need to know to be an expert in creating a website using Astro + Tailwind CSS.
+                        Astro is a very interesting technology. Thanks.
+                `} -->
+  <!-- /> -->
 </Layout>
