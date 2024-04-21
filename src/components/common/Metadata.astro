@@ -38,6 +38,9 @@ const seoProps: AstroSeoProps = merge(
       images: [],
       locale: I18N?.language || 'en',
       type: 'website',
+      article: {
+        authors: [SITE?.author],
+      },
     },
     twitter: {
       cardType: openGraph?.images?.length ? 'summary_large_image' : 'summary',

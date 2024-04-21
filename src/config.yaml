@@ -3,6 +3,7 @@ site:
   site: 'https://uchenml.tech/'
   base: '/'
   trailingSlash: false
+  author: Eugene Ostroukhov
 
   # googleSiteVerificationId: orcPxI47GSa-cRvY11tUe6iGg2IO_RPvnA1q95iEM3M
 
@@ -19,13 +20,13 @@ metadata:
     site_name: UchenML
     images:
       - url: '~/assets/images/transparent.png'
-        width: 1200
-        height: 628
+        width: 200
+        height: 200
     type: website
   twitter:
     handle: '@eeuoss'
     site: '@eeuoss'
-    cardType: summary_large_image
+    cardType: summary
 
 i18n:
   language: en
