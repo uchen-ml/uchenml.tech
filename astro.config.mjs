@@ -26,13 +26,13 @@ const whenExternalScripts = (items = []) =>
 
 export default defineConfig({
   output: 'static',
+  site: 'https://uchenml.tech/',
 
   integrations: [
     tailwind({
       applyBaseStyles: false,
     }),
     sitemap(),
-    mdx(),
     icon({
       include: {
         tabler: ['*'],
@@ -70,13 +70,13 @@ export default defineConfig({
     }),
 
     astrowind({
-      config: "./src/config.yaml"
+      config: './src/config.yaml',
     }),
   ],
 
   image: {
     service: squooshImageService(),
-    domains: ["cdn.pixabay.com"],
+    domains: ['cdn.pixabay.com'],
   },
 
   markdown: {

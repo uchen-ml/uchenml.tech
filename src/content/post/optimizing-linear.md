@@ -77,7 +77,7 @@ Intel(R) Core(TM) i7-10700KF CPU @ 3.80GHz   3.79 GHz
 ## Naive version
 
 Linear layer runs the following operation to produce the output:
-<math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>y</mi><mi>j</mi></msub><mo>=</mo><msub><mi>b</mi><mi>j</mi></msub><mo>+</mo><mrow><munderover><mo movablelimits="false">&#x2211;</mo><mrow><mi>i</mi><mo>=</mo><mn>0</mn></mrow><mi>n</mi></munderover></mrow><msub><mi>w</mi><mrow><mi>i</mi><mi>j</mi></mrow></msub><msub><mi>x</mi><mi>i</mi></msub></mrow></math>
+<math xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>y</mi><mi>j</mi></msub><mo>=</mo><msub><mi>b</mi><mi>j</mi></msub><mo>+</mo><mrow><munderover><mo movablelimits="false">&#x2211;</mo><mrow><mi>i</mi><mo> = 0</mo></mrow><mi>n</mi></munderover></mrow><msub><mi>w</mi><mrow><mi>j</mi><mi>i</mi></mrow></msub><msub><mi>x</mi><mi>i</mi></msub></mrow></math>
 
 Which translated into the following C++ code:
 
@@ -98,15 +98,15 @@ Which translated into the following C++ code:
 ```
 
 Given _n_ inputs and _m_ outputs, parameters layout is:
-Parameters are a flat array in the format (n is a number of inputs, m is the number of outputs):
+Parameters are a flat array in the following format (n is a number of inputs, m is the number of outputs):
 <math xmlns="http://www.w3.org/1998/Math/MathML"><mrow>
 <mo form="prefix" stretchy="false">{</mo>
-<msub><mi>w</mi><mrow><mn>0</mn><mn>0</mn></mrow></msub>
+<msub><mi>w</mi><mrow><mn>00</mn></mrow></msub>
 <mo separator="true">, ... ,</mo><msub><mi>w</mi><mrow><mn>0</mn><mi>n</mi></mrow></msub><mo separator="true">,</mo><msub><mi>b</mi><mn>0</mn></msub><mo separator="true">,</mo><msub><mi>w</mi><mrow><mn>1</mn><mn>0</mn></mrow></msub><mo separator="true">, ... ,</mo><msub><mi>w</mi><mrow><mi>m</mi><mi>n</mi></mrow></msub><mo separator="true">,</mo><msub><mi>b</mi><mi>m</mi></msub><mo form="postfix" stretchy="false">}</mo></mrow></math>
 
 ### Benchmark Results:
 
-| Dimensions | Parameters | i7-10700KF | Apple M2 Pro |
+| <inputs, outputs> | Parameter Count | i7-10700KF | Apple M2 Pro |
 | :--------: | :--------: | :--------: | :----------: |
 | <100, 200> |   20,200   | 13,645 ns  |   6882 ns    |
 | <2500, 8>  |   20,008   | 17,086 ns  |  16,307 ns   |
@@ -149,9 +149,140 @@ Parameters layout is as follows (n is a number of inputs, m is the number of out
 
 ### Benchmark Results:
 
-| Dimensions | i7-10700KF | Apple M2 Pro |
+| <inputs, outputs> | i7-10700KF | Apple M2 Pro |
 | :--------: | :--------: | :--------: |
 | 100, 200 | 1880 ns | 1326 ns |
 | 2500, 8 | 5611ns | 11,124 ns |
 | 8, 2500 | 2015 ns | 1354 ns |
 
+Number of inputs has a significant negative impact on the performance as it
+adds an extra memory load.
+
+## Compile for the specific CPU
+
+By default, the compiler generates the code that works on most CPUs. This
+precludes usage of some newer instructions that have a significant impact
+on the performance. To test this, I pass `-march=native` to the compiler which
+makes it target my current CPU. I am using Bazel, so the invocation looked like
+this (`-g` is for including debugging symbols as I use `gdb` to look at
+the assembly code):
+
+```bash
+bazel run -c opt --cxxopt="-g" --cxxopt="-march=native" //benchmark:linear
+```
+
+### Benchmark Results (Intel only):
+
+| <inputs, outputs> | i7-10700KF |
+| :--------: | :--------: |
+|100, 200 | 1203 ns|
+|2500, 8 |  4871 ns|
+|8, 2500 |  1080 ns|
+
+This "optimization" shows pretty solid across the board. Ultimately, it will be
+up to embedders to decide CPU target to compile for.
+
+## A bigger layer
+
+With the numbers in single digit microseconds, it seems reasonable to increase
+the size of the linear layer to see what impact it has on the performance.
+
+### Benchmark Results (Intel only):
+
+| <inputs, outputs> | i7-10700KF |
+| :--------: | :--------: |
+| 100, 200 | 1180 ns |
+| 2500, 8 | 5056 ns |
+| 8, 2500 | 1148 ns |
+| 4000, 2000 | 1496652 ns |
+| 1000000, 8 | 2986400 ns |
+| 8, 1000000 | 2185253 ns |
+
+The worst case is "only" 2x slower than the best case.
+
+## Using SIMD intrinsics directly
+
+As mentioned above, SIMD intrinsics are not considered (i.e. Web Assembly still
+is not using it). However, it is interesting to see what the performance would
+be if SIMD instructions were used. I did not use AVX as data alignment is not
+supported yet, though this will change soon.
+
+```c++
+  output_t operator()(
+      const input_t& inputs,
+      const Parameters<(Input::elements + 1) * Outputs>& parameters) const {
+    auto it = parameters.begin();
+    output_t outputs;
+    for (size_t i = 0; i < outputs.size(); i++) {
+      outputs[i] = (*it++);
+    }
+    for (size_t i = 0; i < Input::elements; i += 4) {
+      __m128 input = _mm_loadu_ps(&(*inputs.begin()) + i);
+      for (size_t j = 0; j < Outputs; ++j) {
+        __m128 parameters = _mm_load_ps(&(*it));
+        __m128 product = _mm_dp_ps(input, parameters, 0xf1);
+        it += 4;
+        outputs[j] += _mm_cvtss_f32(product);
+      }
+    }
+    return outputs;
+  }
+};
+```
+
+### Benchmark Results (Intel only):
+
+| <inputs, outputs> | i7-10700KF |
+| :--------: | :--------: |
+|100, 200 |5765 ns |
+|2500, 8 |5955 ns |
+|8, 2500 |5761 ns |
+|4000, 2000 |2783286 ns |
+|1000000, 8 |2964343 ns |
+|8, 1000000 |3214760 ns |
+
+"Good" cases worsened, which shows that the updated code is ran. Shape of
+the data is known at compile time when using Uchen so the compilers may make
+informed decisions about vectorization and other optimizations. Uchen will use
+data structures aligned to 32 bytes to enable more optimizations.
+
+Manually unrolling the loop yields similar results:
+
+```c++
+  output_t operator()(
+      const input_t& inputs,
+      const Parameters<(Input::elements + 1) * Outputs>& parameters) const {
+    auto it = parameters.begin();
+    output_t outputs;
+    for (size_t i = 0; i < outputs.size(); i++) {
+      outputs[i] = (*it++);
+    }
+    for (auto input : inputs) {
+      for (size_t i = 0; i < Outputs; i++) {
+        outputs[i++] += (*it++) * input;
+        outputs[i++] += (*it++) * input;
+        outputs[i++] += (*it++) * input;
+        outputs[i] += (*it++) * input;
+      }
+    }
+    return outputs;
+  }
+```
+| <inputs, outputs> | i7-10700KF |
+| :--------: | :--------: |
+| 100, 200 | 6523 ns |
+| 2500, 8 | 5088 ns |
+| 8, 2500 | 6763 ns |
+| 4000, 2000 | 3226969 ns |
+| 1000000, 8 | 2918274 ns |
+| 8, 1000000 | 3734533 ns |
+
+## Conclusion
+
+At this point it looks like the performance on this granularity is pretty close
+to the practical limit for _a single core_. Next article will detail
+multi-threading and the memory alignment (particularly, dealing with the number
+of parameters not divisible by 8).
+
+The backpropagation optimizations and Uchen's approach to the memory management
+will also be detailed in the future articles.
