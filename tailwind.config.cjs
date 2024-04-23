@@ -17,6 +17,13 @@ module.exports = {
         serif: ['var(--aw-font-serif, ui-serif)', ...defaultTheme.fontFamily.serif],
         heading: ['var(--aw-font-heading, ui-sans-serif)', ...defaultTheme.fontFamily.sans],
       },
+      typography: ({ theme }) => ({
+        slate: {
+          css: {
+            '--tw-prose-bullets': theme('colors.gray[500]'),
+          },
+        },
+      }),
     },
   },
   plugins: [typographyPlugin],
