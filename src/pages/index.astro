@@ -1,12 +1,12 @@
 ---
-import Layout from '~/layouts/PageLayout.astro';
+import Layout from "~/layouts/PageLayout.astro";
 
-import Hero from '~/components/widgets/Hero.astro';
-import BlogList from '~/components/blog/List.astro';
-import { findLatestPosts } from '~/utils/blog';
+import Hero from "~/components/widgets/Hero.astro";
+import BlogList from "~/components/blog/List.astro";
+import { findLatestPosts } from "~/utils/blog";
 
 const metadata = {
-  title: 'Uchen ML - Pragmatic Machine Learning',
+  title: "Uchen ML - Pragmatic Machine Learning",
   ignoreTitleTemplate: true,
 };
 
@@ -29,22 +29,25 @@ const posts = await findLatestPosts({ count: 10 });
     ]}
   >
     <Fragment slot="title">
-      <span class="text-accent highlight dark:text-orange-600">Uchen ML</span> is under construction. Stay tuned for updates.
+      <span class="text-accent highlight dark:text-orange-600">Uchen ML</span> is
+      under construction. Stay tuned for updates.
     </Fragment>
 
     <Fragment slot="subtitle">Code is still being written...</Fragment>
 
     <Fragment slot="content"
-      >Follow me on <a href="https://twitter.com/eeuoss" class="text-accent hover:underline hover:font-semibold"
-        >Twitter</a
+      >Follow me on <a
+        href="https://twitter.com/eeuoss"
+        class="text-accent hover:underline hover:font-semibold">Twitter</a
       >
-      or <a href="https://www.linkedin.com/in/eostroukhov/" class="text-accent hover:underline hover:font-semibold"
-        >LinkedIn</a
+      or <a
+        href="https://www.linkedin.com/in/eostroukhov/"
+        class="text-accent hover:underline hover:font-semibold">LinkedIn</a
       > for updates.
     </Fragment>
   </Hero>
 
-  <div class="mx-24">
+  <div class="lg:mx-24 mx-8">
     <BlogList posts={posts} />
   </div>
 </Layout>
