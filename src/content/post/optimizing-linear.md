@@ -9,8 +9,9 @@ tags:
   - c++
   - uchen ml
   - optimization
+  - case study
 metadata:
-  canonical: https://uchen-ml.tech/get-started-website-with-astro-tailwind-css
+  canonical: https://uchenml.tech/optimizing-linear
 ---
 
 ## Overview
