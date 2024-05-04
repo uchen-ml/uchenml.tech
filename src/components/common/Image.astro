@@ -18,7 +18,7 @@ type ImageType = {
 const props = Astro.props;
 
 if (props.alt === undefined || props.alt === null) {
-  throw new Error();
+  throw new Error('Image Alt attribute is missing');
 }
 
 if (typeof props.width === 'string') {
