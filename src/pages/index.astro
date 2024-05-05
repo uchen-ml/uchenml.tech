@@ -29,13 +29,39 @@ const posts = await findLatestPosts({ count: 10 });
     ]}
   >
     <Fragment slot="title">
-      Friendly solution for <span class="text-accent highlight dark:text-orange-600">client side</span> deep learning.
+      Train models that run <span class="text-accent highlight dark:text-orange-600">everywhere</span>
     </Fragment>
 
-    <Fragment slot="subtitle">Build models that run everywhere</Fragment>
+    <Fragment slot="subtitle"
+      >Define, train and deploy models that run on the client side. Use a comprehensive collection of tools to deliver
+      smart solutions for your users.</Fragment
+    >
 
-    <Fragment slot="content"
-      >Follow me on <a href="https://twitter.com/eeuoss" class="text-accent hover:underline hover:font-semibold"
+    <Fragment slot="content">
+      <h3>Efficient and comprehensive machine learning solution written in C++</h3>
+      <div class="grid grid-cols-2">
+        <div
+          class="p-5 sm:p-6 lg:p-8 rounded-3xl border border-box-border bg-box-bg shadow-lg shadow-box-shadow relative overflow-hidden"
+        >
+          <div class="space-y-4 relative">
+            <h2 class="text-lg md:text-xl font-semibold text-heading-2">Easy to Integrate</h2>
+            <p class="md:text-lg text-heading-3 undefined">
+              Build model as a native or WebAssembly library, and integrate with your existing systems.
+            </p>
+          </div>
+          <span class="absolute w-32 aspect-square -bottom-16 -right-16 bg-primary/10 rounded-full"></span>
+        </div>
+      </div>
+      <ol class="flex">
+        <li class="text-lg p-12 rounded shadow-lg border border-1 shadow-black">
+          Integrates and runs on most targets - web browser, video game engines, embedded CPUs
+        </li>
+        <li>Familiar tools, familiar environment</li>
+        <li>Small overhead. Optimized to decrease memory consuption.</li>
+        <li>Predictable. No interpreter, no garbage collector.</li>
+      </ol>
+
+      Follow me on <a href="https://twitter.com/eeuoss" class="text-accent hover:underline hover:font-semibold"
         >Twitter</a
       >
       or <a href="https://www.linkedin.com/in/eostroukhov/" class="text-accent hover:underline hover:font-semibold"
