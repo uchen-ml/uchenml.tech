@@ -8,9 +8,15 @@ const { Content } = await entry.render();
 ---
 
 <div
-  class="grow p-5 sm:p-6 lg:p-8 rounded-md border border-box-border bg-box-bg shadow-lg shadow-box-shadow relative overflow-hidden"
+  class="grow rounded-md border border-box-border bg-orange-100 dark:bg-box-bg shadow-lg shadow-box-shadow relative overflow-hidden"
 >
-  <div class="space-y-4 relative">
+  <div class="bg-orange-200 p-5 sm:p-6 lg:p-8 flex border-b border-orange-500">
+    <h1 class="text-3xl font-bold grow">
+      <a href={`/${entry.slug}`}>{entry.data.title}</a>
+    </h1>
+    <span class="self-end">{entry.data?.publishDate?.toDateString()}</span>
+  </div>
+  <div class="space-y-4 relative p-5 sm:p-6 lg:p-8">
     <div
       class="prose dark:prose-invert
         prose-h1:font-bold prose-h1:text-2xl

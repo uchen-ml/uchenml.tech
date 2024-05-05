@@ -10,8 +10,8 @@ const { Content, headings } = await posts[0].render();
 <Layout title="Welcome to Uchen ML">
   <main
     class="gap-y-20 md:gap-y-32 overflow-hidden
-    bg-slate-200 dark:bg-current pt-32 xl:px-56 lg:px-32 md:px-16 px-8"
+    pt-32 xl:px-56 lg:px-32 md:px-16 px-8"
   >
-    <BlogEntry entry={posts[0]} />
+    {(posts ?? []).map((post) => <BlogEntry entry={post} />)}
   </main>
 </Layout>
