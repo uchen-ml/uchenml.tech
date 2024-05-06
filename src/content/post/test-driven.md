@@ -34,6 +34,7 @@ cases they can be manual as well. Tests can be on any granularity level.
 ### Practices
 
 - Cleanup aggressively, avoid duplication
+- Do not predict the code
 - Auto rerun
 - Disabled test cases serve as TODOs
 
