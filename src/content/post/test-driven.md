@@ -51,9 +51,30 @@ Implement a REST API endpoint according to the specification provided by a partn
 
 ### Approach
 
-The service code that was implementing the API was split into multiple layer and engineered in several components. There was a component that was packaging a respond according to the customer specification, internal component that was aggregating and sanitizing the data (e.g. converting the codes between internal conventions and the partner specifications, normalizing addresses, etc). Connector to each internal datasource was factored into separate components as well.
+The service code that was implementing the API was split into multiple layer and
+engineered in several components. There was a component that was packaging
+a response according to the customer specification, internal component that was
+aggregating and sanitizing the data (e.g. converting the codes between internal
+conventions and the partner specifications, normalizing addresses, etc).
+Connectors to each internal datasource were also factored into independent
+components. Request processing and validation was also a separate component.
 
-Each component had its own unit testing suite. 
+The first test implemented was directly calling the endpoint implementation with
+a mock request and checking the response. The implementation began with
+returning a hardcoded response and then gradually adding more and more logic.
+E.g. hardcoded customer address would be extracted into a component that talks
+to the customer service and then separate unit level tests would be written for
+that component. Unit level tests were focused on a single component and were
+mocking all the dependencies. E.g. unit tests for the customer service connector
+would mock the network layer and directly check the requests sent to
+the customer service. Mock responses would be fed into the connector to verify
+the logic, including validation and error propagation.
+
+### Highlights
+
+- Project was broken up into multiple independent components that could be developed independently.
+- Most components required a significant amount of discussions with stakeholders (e.g. developers of the services, data owners, security and privacy teams) and being able to carry said discussions in parallel significantly sped up the project.
+- Tests naturally forced component boundaries and helped to identify the interfaces between the components.
 
 ## Node.Js Inspector Server
 
