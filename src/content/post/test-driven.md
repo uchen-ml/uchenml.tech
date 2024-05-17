@@ -77,7 +77,25 @@ the logic, including validation and error propagation.
 - Most components required a significant amount of discussions with stakeholders (e.g. developers of the services, data owners, security and privacy teams) and being able to carry said discussions in parallel significantly sped up the project.
 - Tests naturally forced component boundaries and helped to identify the interfaces between the components.
 
+### Outcome
+
+The project was delivered on time and no was promptly accepted by the partner.
+
 ## Node.Js Inspector Server
+
+### Problem Statement
+
+Implement a WebSocket server that will run inside of a Node.Js process and will
+allow developer tools (such as IDEs, debuggers or profilers) to connect and
+obtain insights into the running process. The exposed protocol is compatible
+with the Chrome DevTools protocol to join the two ecosystems.
+
+### Challenges
+
+- The implementation resides in the core Node.js binary and has strict performance and security requirements.
+- The implementation is a low-level C++ code that needs to run on all platforms supported by Node.js.
+- Rebuilding the Node.js binary is a time-consuming process and can introduce a significant drag to developer productivity.
+- I was completely unfamiliar with the `libuv` and Node.js internals in general.
 
 ## Uchen
 
