@@ -1,6 +1,8 @@
 ---
 import Container from "../shared/Container.astro";
 import  Navitem from "../shared/Navitem.astro";
+import { Icon } from 'astro-icon/components';
+import { getAsset } from '~/utils/permalinks';
 
 const navItems = [
     {
@@ -11,10 +13,10 @@ const navItems = [
         href:"#services",
         text:"Examples"
     },
-    {
-        href:"/about",
-        text:"About"
-    },
+    // {
+    //     href:"/about",
+    //     text:"About"
+    // },
     {
         href:"/blog",
         text:"Blog"
@@ -63,6 +65,18 @@ const navItems = [
                     <span id="line3" class="w-6 mt-1 h-0.5 rounded-ful bg-heading-2 transition-all duration-300 ease-linear"></span>                         
                     <span class="sr-only">togglenav</span>
                 </button>
+
+                {
+                    true && (
+                      <a
+                        class="text-muted dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 inline-flex items-center"
+                        aria-label="RSS Feed"
+                        href={getAsset('/rss.xml')}
+                      >
+                        <Icon name="tabler:rss" class="w-5 h-5" />
+                      </a>
+                    )
+                  }
             </div>
         </nav>
     </Container>

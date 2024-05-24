@@ -1,0 +1,73 @@
+site:
+  name: UchenML
+  site: 'https://uchenml.tech/'
+  base: '/'
+  trailingSlash: false
+  author: Eugene Ostroukhov
+
+  # googleSiteVerificationId: orcPxI47GSa-cRvY11tUe6iGg2IO_RPvnA1q95iEM3M
+
+# Default SEO metadata
+metadata:
+  title:
+    default: UchenML
+    template: '%s — UchenML'
+  description: "Machine Learning framework for software developers"
+  robots:
+    index: true
+    follow: true
+  openGraph:
+    site_name: UchenML
+    images:
+      - url: '~/assets/images/transparent.png'
+        width: 200
+        height: 200
+    type: website
+  twitter:
+    handle: '@eeuoss'
+    site: '@eeuoss'
+    cardType: summary
+
+i18n:
+  language: en
+  textDirection: ltr
+
+apps:
+  blog:
+    isEnabled: true
+    postsPerPage: 6
+
+    post:
+      isEnabled: true
+      permalink: '/%slug%' # Variables: %slug%, %year%, %month%, %day%, %hour%, %minute%, %second%, %category%
+      robots:
+        index: true
+
+    list:
+      isEnabled: true
+      pathname: 'blog' # Blog main path, you can change this to "articles" (/articles)
+      robots:
+        index: true
+
+    category:
+      isEnabled: true
+      pathname: 'category' # Category main path /category/some-category, you can change this to "group" (/group/some-category)
+      robots:
+        index: true
+
+    tag:
+      isEnabled: true
+      pathname: 'tag' # Tag main path /tag/some-tag, you can change this to "topics" (/topics/some-category)
+      robots:
+        index: false
+
+    isRelatedPostsEnabled: true
+    relatedPostsCount: 4
+
+analytics:
+  vendors:
+    googleAnalytics:
+      id: 'G-9MVL69VNJN'
+
+ui:
+  theme: 'system' # Values: "system" | "light" | "dark" | "light:only" | "dark:only"
