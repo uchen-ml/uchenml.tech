@@ -85,10 +85,9 @@ The project was delivered on time and no was promptly accepted by the partner.
 
 ### Problem Statement
 
-Implement a WebSocket server that will run inside of a Node.Js process and will
-allow developer tools (such as IDEs, debuggers or profilers) to connect and
-obtain insights into the running process. The exposed protocol is compatible
-with the Chrome DevTools protocol to join the two ecosystems.
+Transition Node.js to use a new V8 debugging API and expose a WebSocket endpoint
+compatible with the Chrome DevTools protocol. Ensure smooth ecosystem transition
+and provide tools vendors with a clear migration path.
 
 ### Challenges
 
@@ -96,6 +95,65 @@ with the Chrome DevTools protocol to join the two ecosystems.
 - The implementation is a low-level C++ code that needs to run on all platforms supported by Node.js.
 - Rebuilding the Node.js binary is a time-consuming process and can introduce a significant drag to developer productivity.
 - I was completely unfamiliar with the `libuv` and Node.js internals in general.
+
+### Approach
+
+Initial focus was a websocket server. The server was a C++ code as it was to run
+outside the V8 engine and in the separate thread. The test would connect to the
+server and send the data back and forth.
+
+Initially the server implementation was contained in the test code so rebuild
+did not require a full rebuild of the Node.js binary. As the code evolved, it
+got split into multiple source files and gradually moved into the core Node.js
+code.
+
+Current C++ test suite includes:
+
+- [test_inspector_socket_server.cc][1] Tests the server, including socket listening, HTTP protocol support and some potential error states.
+- [test_inspector_socket.cc][2] WebSocket protocol tests with specific focus on edge cases and error handling.
+
+[1]: https://github.com/nodejs/node/blob/main/test/cctest/test_inspector_socket_server.cc
+[2]: https://github.com/nodejs/node/blob/main/test/cctest/test_inspector_socket.cc
+
+One interesting feature of `libuv` was that the tests were single-threaded which
+greatly simplified the implementation of the test suite (and was a fun challenge
+from the coding point of view). Tests were crucial in catching a number of hard
+to reproduce bugs and regressions, especially ones caused by the differences in
+`libuv` behavior on different platforms.
+
+Once the server was stable and inspector integration began, tests were written
+in JavaScript and would use the websocket protocol, i.e. they would not be
+strictly "unit tests". V8 inspector has a significant testing coverage in the
+core V8 so duplicating it would simply increase the maintenance burden without
+adding much value.
+
+At a later stage the JavaScript API was introduced by community demand. This
+provided an even easier way to write tests in JavaScript, particularly to cover
+Node-specific protocol extensions, such as [tracing][3] or [workers][4].
+
+[3]: https://github.com/nodejs/node/blob/main/test/parallel/test-inspector-tracing-domain.js
+[4]: https://github.com/nodejs/node/blob/main/test/parallel/test-worker-debug.js
+
+### Highlights
+
+Transition to the new protocol happened ahead of schedule, with the legacy
+protocol being deprecated and removed altogether. The integration had to go
+through a number of deep reworks, that did not disrupt the ecosystem, such as
+when a support for worker threads was needed. In all cases new test cases were
+only added. At one point a significant flakyness of Inspector tests prompted
+a deep refactor ([PR][5]) that improved the performance and stability of
+the entire devtools protocol.
+
+At least one [test case][6] was added to explain a decision to keep code in a
+native C++ part, after several contributors created PRs to move it
+to JavaScript.
+
+In several cases potential security vulnerabilities were identified by
+the community and the tests were added to prevent regressions.
+
+[5]: https://github.com/nodejs/node/pull/21182
+[6]: https://github.com/nodejs/node/pull/25455
+
 
 ## Uchen
 
