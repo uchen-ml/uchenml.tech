@@ -44,9 +44,9 @@ static void BM_Linear(benchmark::State& state) {
   // zero-initialized input vector. This operation is O(n) to the number
   // of the inputs and may have a negligible impact on benchmark.
   uchen::Vector<D, Is> input;
-  // Parameters are using the store filled with random values outside the loop.
-  // This operation is O(1) to the number of parameters and has no impact
-  // on benchmark.
+  // Parameters are using the store filled with random values outside
+  // the loop This operation is O(1) to the number of parameters and has
+  // no impact on benchmark.
   uchen::parameters_t<decltype(layer)> parameters(params->store());
   for (auto _ : state) {
     benchmark::DoNotOptimize(layer(input, parameters));

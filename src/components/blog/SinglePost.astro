@@ -23,14 +23,14 @@ const { Content } = post;
   <article>
     <header class={post.image ? "" : ""}>
       <div
-        class="flex justify-between flex-col sm:flex-row max-w-3xl mx-auto mt-0 mb-2 sm:items-center"
+        class="flex justify-between flex-col sm:flex-row max-w-3xl mt-0 mb-2 sm:items-center"
       >
         <p>
           <Icon
             name="tabler:clock"
             class="w-4 h-4 inline-block -mt-0.5 dark:text-gray-400"
           />
-          <time datetime={String(post.publishDate)} class="inline-block"
+          <time datetime={String(post.publishDate)} class="inline-block dark:text-slate-400"
             >{getFormattedDate(post.publishDate)}</time
           >
           {
@@ -42,7 +42,7 @@ const { Content } = post;
                   name="tabler:user"
                   class="w-4 h-4 inline-block -mt-0.5 dark:text-gray-400"
                 />
-                <span class="inline-block">{post.author}</span>
+                <span class="inline-block dark:text-slate-400">{post.author}</span>
               </>
             )
           }
@@ -52,7 +52,7 @@ const { Content } = post;
                 {" "}
                 ·{" "}
                 <a
-                  class="hover:underline inline-block"
+                  class="hover:underline inline-block dark:text-slate-400"
                   href={getPermalink(post.category.slug, "category")}
                 >
                   {post.category.title}
@@ -71,12 +71,12 @@ const { Content } = post;
       </div>
 
       <h1
-        class="max-w-3xl mx-auto text-4xl md:text-5xl font-bold leading-tighter tracking-tighter font-heading"
+        class="max-w-3xl text-4xl md:text-5xl dark:text-slate-400 font-bold leading-tighter tracking-tighter font-heading"
       >
         {post.title}
       </h1>
       <p
-        class="max-w-3xl mx-auto mt-4 mb-8 text-xl md:text-2xl text-muted dark:text-slate-400 text-justify"
+        class="max-w-3xl mt-4 mb-8 text-xl md:text-2xl text-muted dark:text-slate-400 text-justify"
       >
         {post.excerpt}
       </p>
