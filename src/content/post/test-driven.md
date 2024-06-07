@@ -69,44 +69,32 @@ The community identified several potential security vulnerabilities, leading to 
 
 ### Problem Statement
 
-Implement a REST API endpoint according to the specification provided by a partner company. Partner software will query the endpoint to obtain an information from our systems to streamline customer experience.
+The task was to implement a REST API endpoint according to the specifications provided by a partner company. Their software would query this endpoint to obtain information from our systems, streamlining the customer experience.
 
 ### Challenges
 
-- Specification had a significant amount of details and it was not clear if we had all the information our partner expected or in the same format.
-- It was not clear if the kind of access was always in line with our security and privacy policies.
-- It was clear that the information had to come from multiple sources inside of our company and it was difficult to estimate how readily the data was available.
+- The specification required a large amount of the data points, raising concerns about whether we had all the required information or if it was in the expected format.
+- There were uncertainties about whether the requested access complied with our security and privacy policies.
+- The necessary information had to be sourced from multiple internal systems, and it was unclear how readily available this data was.
 
 ### Approach
 
-The service code that was implementing the API was split into multiple layer and
-engineered in several components. There was a component that was packaging
-a response according to the customer specification, internal component that was
-aggregating and sanitizing the data (e.g. converting the codes between internal
-conventions and the partner specifications, normalizing addresses, etc).
-Connectors to each internal datasource were also factored into independent
-components. Request processing and validation was also a separate component.
+The service code implementing the API was divided into multiple layers and engineered into several components:
 
-The first test implemented was directly calling the endpoint implementation with
-a mock request and checking the response. The implementation began with
-returning a hardcoded response and then gradually adding more and more logic.
-E.g. hardcoded customer address would be extracted into a component that talks
-to the customer service and then separate unit level tests would be written for
-that component. Unit level tests were focused on a single component and were
-mocking all the dependencies. E.g. unit tests for the customer service connector
-would mock the network layer and directly check the requests sent to
-the customer service. Mock responses would be fed into the connector to verify
-the logic, including validation and error propagation.
+- **Response Packaging**: A component to format the response according to the partner’s specifications.
+- **Data Aggregation and Sanitization**: An internal component to aggregate data and ensure it was sanitized (e.g., converting internal codes to the partner’s specifications, normalizing addresses).
+- **Data Source Connectors**: Independent components to connect to each internal data source.
+- **Request Processing and Validation**: A separate component to handle request validation and processing.
+
+The first test involved directly calling the endpoint implementation with a mock request and checking the response. The initial implementation returned a hardcoded response, which was then gradually enhanced with more logic. E.g. a code that returns a hardcoded customer address would be replaced with a component that retrieved the address from the customer service. Unit tests were created for each component, focusing on mocking dependencies to verify logic, validation, and error propagation. For example, unit tests for the customer service connector mocked the network layer to directly check requests sent to the customer service, and mock responses were used to validate the connector’s logic, both in a happy path and in error scenarios.
 
 ### Highlights
 
-- Project was broken up into multiple independent components that could be developed independently.
-- Most components required a significant amount of discussions with stakeholders (e.g. developers of the services, data owners, security and privacy teams) and being able to carry said discussions in parallel significantly sped up the project.
-- Tests naturally forced component boundaries and helped to identify the interfaces between the components.
+- The project codebase was split into clear maintainable components, enabling parallel development, including discussions with the teams responsible for each data source.
+- Significant discussions with stakeholders (e.g., service developers, data owners, security, and privacy teams) were necessary, and we were able to start these discussions sooner which reduce the risk of delays.
+- Testing provided with plenty of examples that were really useful in communications. For example, when discussing the data format with the partner, we could provide examples of the data we were sending, which helped clarify the requirements.
 
-### Outcome
-
-The project was delivered on time and no was promptly accepted by the partner.
+The project was delivered on time and promptly accepted by the partner.
 
 ## Uchen
 
