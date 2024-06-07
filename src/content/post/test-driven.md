@@ -3,7 +3,7 @@ publishDate: 2024-04-25T00:00:00Z
 author: Eugene Ostroukhov
 authorLink: https://www.linkedin.com/in/eostroukhov/
 title: Case Study - Test Driven Development
-excerpt: Test Driven Development (TDD) still seems to spark debates in developer community. This article details my experience and learnings from applying it in past projects.
+excerpt: Test Driven Development (TDD) continues to ignite debates within the developer community. In this article, I share my experiences and insights gained from implementing TDD in various projects.
 category: Case Studies
 tags:
   - case study
@@ -15,28 +15,55 @@ metadata:
 
 ## Overview
 
-Test Driven Development (TDD) is a software development process where tests are
-implemented before the actual code. Implementation progress is then informed by
-the test status.
+Test Driven Development (TDD) is a software development methodology where tests are written before the actual code. The progress of implementation is then guided by the status of these tests.
 
-### TDD vs Automated Testing vs Unit Testing
+There is often confusion between the terms "automated testing," "unit testing," and "TDD." To clarify:
 
-There seems to be some confusion between "automated testing", "unit testing" and
-"TDD". I'd like to clarify the terminology this way:
+- **Automated Testing** refers to any testing performed by specialized software without requiring manual intervention. This includes various types of testing, depending on the scope (unit/integration) or the metrics being evaluated (correctness, security, load, benchmarking).
 
-- **Automated Testing** is a general term for any testing that is performed by running a special software and does not require operator involvement. There are many different type of automated testing, depending on the scope of testing (unit/integration) or the metrics (correctness/security/load/benchmarking).
+- **Unit Testing** is a subset of automated testing that focuses on the smallest, independent logical units of code. These tests can be created at any stage of development, whether before or after the code is written.
 
-- **Unit Testing** is a type of (usually) automated testing that focuses on smallest independent logical units of the code. Tests can be written at any time, before or after the code.
+- **Test Driven Development (TDD)** is a practice where tests are designed and implemented before writing the actual code. While these tests are typically automated, they can also be manual in some cases. TDD can be applied at any level of granularity.
 
-- **Test Driven Development** is a practice of designing and implementing tests before the code is written. Tests are usually automated though in some
-cases they can be manual as well. Tests can be on any granularity level.
+## Node.js Inspector Server
 
-### Practices
+### Problem Statement
 
-- Cleanup aggressively, avoid duplication
-- Do not predict the code
-- Auto rerun
-- Disabled test cases serve as TODOs
+The goal was to transition Node.js to utilize a new V8 debugging API and expose a WebSocket endpoint compatible with the Chrome DevTools protocol. This required ensuring a smooth ecosystem transition and providing tools vendors with a clear migration path.
+
+### Challenges
+
+- The implementation needed to reside in the core Node.js binary, adhering to strict performance and security requirements.
+- The low-level C++ code had to run on all platforms supported by Node.js.
+- Rebuilding the Node.js binary is a time-consuming process that can significantly impact developer productivity.
+- I was initially unfamiliar with `libuv` and the internals of Node.js.
+
+### Approach
+
+The initial focus was on creating a WebSocket server in C++ to run outside the V8 engine on a separate thread. This design ensured that the server would continue running even when V8 was paused at a breakpoint, and it also minimized the impact on profiling data of the user code.
+
+To avoid a full rebuild of the Node.js binary during development, the server implementation was initially contained within the test code. As the codebase evolved, it was split into multiple source files and gradually integrated into the core Node.js code.
+
+The current C++ test suite includes:
+
+- [test_inspector_socket_server.cc](https://github.com/nodejs/node/blob/main/test/cctest/test_inspector_socket_server.cc): Tests the server, including socket listening, HTTP protocol support, and potential error states.
+- [test_inspector_socket.cc](https://github.com/nodejs/node/blob/main/test/cctest/test_inspector_socket.cc): WebSocket protocol tests with a focus on edge cases and error handling.
+
+One interesting aspect of `libuv` was that the tests were single-threaded, greatly simplifying the implementation of the test suite. This was a fun coding challenge and crucial for catching hard-to-reproduce bugs and regressions, especially those caused by differences in `libuv` behavior across platforms.
+
+Once the server was stable and inspector integration began, tests were written in JavaScript using the WebSocket protocol. These tests were not strictly "unit tests," as V8 inspector already had significant testing coverage in the core V8, and duplicating it would have increased maintenance without adding much value.
+
+Later, a JavaScript API was introduced by community demand, making it even easier to write tests in JavaScript, particularly to cover Node-specific protocol extensions such as [tracing](https://github.com/nodejs/node/blob/main/test/parallel/test-inspector-tracing-domain.js) or [workers](https://github.com/nodejs/node/blob/main/test/parallel/test-worker-debug.js).
+
+### Highlights
+
+The transition to the new protocol was completed ahead of schedule, allowing the legacy protocol to be deprecated and removed altogether. The integration underwent several deep reworks without disrupting the ecosystem, including the addition of support for worker threads. In all cases, new test cases were added to ensure stability.
+
+A significant flakiness in Inspector tests prompted a deep refactor ([PR](https://github.com/nodejs/node/pull/21182)), improving the performance and stability of the entire DevTools protocol.
+
+At least one [test case](https://github.com/nodejs/node/pull/25455) was added to justify keeping code in the native C++ part after contributors proposed moving it to JavaScript.
+
+The community identified several potential security vulnerabilities, leading to the addition of tests to prevent regressions.
 
 ## Partner API Endpoint
 
@@ -81,85 +108,15 @@ the logic, including validation and error propagation.
 
 The project was delivered on time and no was promptly accepted by the partner.
 
-## Node.Js Inspector Server
-
-### Problem Statement
-
-Transition Node.js to use a new V8 debugging API and expose a WebSocket endpoint
-compatible with the Chrome DevTools protocol. Ensure smooth ecosystem transition
-and provide tools vendors with a clear migration path.
-
-### Challenges
-
-- The implementation resides in the core Node.js binary and has strict performance and security requirements.
-- The implementation is a low-level C++ code that needs to run on all platforms supported by Node.js.
-- Rebuilding the Node.js binary is a time-consuming process and can introduce a significant drag to developer productivity.
-- I was completely unfamiliar with the `libuv` and Node.js internals in general.
-
-### Approach
-
-Initial focus was a websocket server. The server was a C++ code as it was to run
-outside the V8 engine and in the separate thread. The test would connect to the
-server and send the data back and forth.
-
-Initially the server implementation was contained in the test code so rebuild
-did not require a full rebuild of the Node.js binary. As the code evolved, it
-got split into multiple source files and gradually moved into the core Node.js
-code.
-
-Current C++ test suite includes:
-
-- [test_inspector_socket_server.cc][1] Tests the server, including socket listening, HTTP protocol support and some potential error states.
-- [test_inspector_socket.cc][2] WebSocket protocol tests with specific focus on edge cases and error handling.
-
-[1]: https://github.com/nodejs/node/blob/main/test/cctest/test_inspector_socket_server.cc
-[2]: https://github.com/nodejs/node/blob/main/test/cctest/test_inspector_socket.cc
-
-One interesting feature of `libuv` was that the tests were single-threaded which
-greatly simplified the implementation of the test suite (and was a fun challenge
-from the coding point of view). Tests were crucial in catching a number of hard
-to reproduce bugs and regressions, especially ones caused by the differences in
-`libuv` behavior on different platforms.
-
-Once the server was stable and inspector integration began, tests were written
-in JavaScript and would use the websocket protocol, i.e. they would not be
-strictly "unit tests". V8 inspector has a significant testing coverage in the
-core V8 so duplicating it would simply increase the maintenance burden without
-adding much value.
-
-At a later stage the JavaScript API was introduced by community demand. This
-provided an even easier way to write tests in JavaScript, particularly to cover
-Node-specific protocol extensions, such as [tracing][3] or [workers][4].
-
-[3]: https://github.com/nodejs/node/blob/main/test/parallel/test-inspector-tracing-domain.js
-[4]: https://github.com/nodejs/node/blob/main/test/parallel/test-worker-debug.js
-
-### Highlights
-
-Transition to the new protocol happened ahead of schedule, with the legacy
-protocol being deprecated and removed altogether. The integration had to go
-through a number of deep reworks, that did not disrupt the ecosystem, such as
-when a support for worker threads was needed. In all cases new test cases were
-only added. At one point a significant flakyness of Inspector tests prompted
-a deep refactor ([PR][5]) that improved the performance and stability of
-the entire devtools protocol.
-
-At least one [test case][6] was added to explain a decision to keep code in a
-native C++ part, after several contributors created PRs to move it
-to JavaScript.
-
-In several cases potential security vulnerabilities were identified by
-the community and the tests were added to prevent regressions.
-
-[5]: https://github.com/nodejs/node/pull/21182
-[6]: https://github.com/nodejs/node/pull/25455
-
-
 ## Uchen
-
-## Unsuccessful: UI Development
 
 ## Conclusion
 
 Improves code design, easier to refactor, better test coverage.
 
+### Practices
+
+- Cleanup aggressively, avoid duplication
+- Do not predict the code
+- Auto rerun
+- Disabled test cases serve as TODOs
