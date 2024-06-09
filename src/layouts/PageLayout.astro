@@ -1,12 +1,12 @@
 ---
-import Layout from '~/layouts/Layout.astro';
-import Header from '~/components/widgets/Header.astro';
-import Footer from '~/components/widgets/Footer.astro';
-import Announcement from '~/components/widgets/Announcement.astro';
+import Layout from "~/layouts/Layout.astro";
+import Header from "~/components/widgets/Header.astro";
+import Footer from "~/components/widgets/Footer.astro";
+import Announcement from "~/components/widgets/Announcement.astro";
 
-import { headerData, footerData } from '~/navigation';
+import { headerData, footerData } from "~/navigation";
 
-import type { MetaData } from '~/types';
+import type { MetaData } from "~/types";
 
 export interface Props {
   metadata?: MetaData;
@@ -16,7 +16,7 @@ export interface Props {
 ---
 
 <Layout>
-  <main class="flex flex-col overflow-hidden bg-slate-200 dark:bg-current pt-24">
+  <main class="flex flex-col overflow-hidden pt-24">
     <slot />
   </main>
 </Layout>

@@ -30,7 +30,9 @@ const { Content } = post;
             name="tabler:clock"
             class="w-4 h-4 inline-block -mt-0.5 dark:text-gray-400"
           />
-          <time datetime={String(post.publishDate)} class="inline-block dark:text-slate-400"
+          <time
+            datetime={String(post.publishDate)}
+            class="inline-block dark:text-slate-400"
             >{getFormattedDate(post.publishDate)}</time
           >
           {
@@ -42,7 +44,9 @@ const { Content } = post;
                   name="tabler:user"
                   class="w-4 h-4 inline-block -mt-0.5 dark:text-gray-400"
                 />
-                <span class="inline-block dark:text-slate-400">{post.author}</span>
+                <span class="inline-block dark:text-slate-400">
+                  {post.author}
+                </span>
               </>
             )
           }
@@ -71,7 +75,7 @@ const { Content } = post;
       </div>
 
       <h1
-        class="max-w-3xl text-4xl md:text-5xl dark:text-slate-400 font-bold leading-tighter tracking-tighter font-heading"
+        class="max-w-3xl text-4xl md:text-5xl dark:text-slate-200 font-bold leading-tighter tracking-tighter font-heading"
       >
         {post.title}
       </h1>
