@@ -39,34 +39,36 @@ const components = [
   {
     title: "Uchen Runtime",
     description:
-      "The Uchen Runtime is a C++20 high performance, efficient and easy to " +
-      "integrate library for running machine learning models. Compatible with " +
-      "most modern platforms.",
+      "Experience high-performance and efficient model inference with Uchen " +
+      "Runtime, a C++20 runtime that integrates seamlessly with modern " +
+      "platforms with compatible compilers.",
     state: ComponentState.inuse,
     color: "fuchsia-500",
   },
   {
     title: "Uchen Core",
     description:
-      "The Uchen Core is a C++20 library and collection command-line tools for training " +
-      "machine learning models. Current focus is on supporting common workflows and " +
-      "focus on reinforcement learning algorithms.",
+      "Uchen Core is a C++20 library and set of command-line tools designed " +
+      "for training machine learning models. It supports common workflows " +
+      "with a particular focus on reinforcement learning algorithms.",
     state: ComponentState.inuse,
     color: "indigo-300",
   },
   {
     title: "Uchen Console",
     description:
-      "A hosted tool for quick onboarding and testing of Uchen models. Provides a direct " +
-      "download to WebAssembly, without the need to build the model yourself.",
+      "Uchen Console is a hosted tool for quick onboarding and managing " +
+      "Uchen models. Intuitive interface for managing model versions, " +
+      "datasets and deployment targets.",
     state: ComponentState.planning,
     color: "orange-500",
   },
   {
     title: "Uchen Brain Surgeon",
     description:
-      "A hosted tool for debugging and refactoring Uchen models. Provides deep insights into the " +
-      'model "way of thinking" and encourages teams to experiment with new ideas.',
+      "Uchen Brain Surgeon is a hosted tool for debugging and refactoring " +
+      "Uchen models. It offers deep insights into the model's \"way of " +
+      'thinking" and encourages teams to explore new ideas.',
     color: "cyan-500",
   },
 ];
