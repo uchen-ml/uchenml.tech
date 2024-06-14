@@ -2,8 +2,8 @@
 publishDate: 2024-04-25T00:00:00Z
 author: Eugene Ostroukhov
 authorLink: https://www.linkedin.com/in/eostroukhov/
-title: Case Study - Test Driven Development
-excerpt: Test Driven Development (TDD) continues to ignite debates within the developer community. In this article, I share my experiences and insights gained from implementing TDD in various projects.
+title: Case Study - TDD in Node.js Inspector Server and Other Projects
+excerpt: Test Driven Development (TDD) is still seems to be controversial. This article explores the application of TDD in real world projects
 category: Case Studies
 tags:
   - case study
@@ -96,15 +96,32 @@ The first test involved directly calling the endpoint implementation with a mock
 
 The project was delivered on time and promptly accepted by the partner.
 
-## Uchen
+## UchenML
+
+### Problem Statement
+
+This project began as an attempt to build deep learning models that could be easily
+deployed in specific scenarios. It was developed alongside learning the theory 
+of deep neural network training. Both the external API and internal implementation 
+were in constant flux, with significant rewrites anticipated.
+
+### Approach
+
+Each component started as a test case. For example, each gradient calculator began in the test class, with all numbers verified against values returned by the PyTorch implementation. As the framework matured, the underlying math of the stacked components grew increasingly complex, making the tests essential for detecting subtle issues. Extensive rework often required benchmarks to justify code changes. Writing test cases helped refine the framework's API.
+
+### Highlights
+
+The project continues to evolve, despite extended breaks in development. Test cases have been invaluable for catching new issues early, including identifying when new APIs are too cumbersome for unconsidered use cases.
 
 ## Conclusion
 
-Improves code design, easier to refactor, better test coverage.
+I consider TDD the essential practice for delivering maintainable software. The test
+cases may serve as a way to track the implementation progress, help onboard new team
+members, and provide a safety net for future changes.
 
-### Practices
+### My TDD Best Practices
 
-- Cleanup aggressively, avoid duplication
-- Do not predict the code
-- Auto rerun
-- Disabled test cases serve as TODOs
+- Avoid duplicate test cases. Cleanup aggressively. Too many unnecessary tests can be a huge maintenance burden.
+- Test behaviors not the implementation. Use higher level APIs and data that mimics the real-world usage.
+- Use a tool that reruns the tests in the IDE on file save. E.g. `jest --watch` or `ibazel`
+- Do not add `TODO` comments in the code. Add disabled or failing tests instead.
