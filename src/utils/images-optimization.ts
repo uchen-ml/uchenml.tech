@@ -301,10 +301,16 @@ export async function getImagesOptimized(
 
   let breakpoints = getBreakpoints({ width: width, breakpoints: widths, layout: layout });
   breakpoints = [...new Set(breakpoints)].sort((a, b) => a - b);
-
-  const srcset = (await transform(image, breakpoints, Number(width) || undefined, Number(height) || undefined))
+  const srcset = (
+    await transform(
+      image,
+      breakpoints,
+      Number(width) || undefined,
+      Number(height) || undefined
+    )
+  )
     .map(({ src, width }) => `${src} ${width}w`)
-    .join(', ');
+    .join(", ");
 
   return {
     src: typeof image === 'string' ? image : image.src,

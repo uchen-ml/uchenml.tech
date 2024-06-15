@@ -88,14 +88,11 @@ const { post, url } = Astro.props;
         post.image ? (
           <Image
             src={post.image}
-            class="max-w-full lg:max-w-[900px] mx-auto mb-6 sm:rounded-md bg-gray-400 dark:bg-slate-700"
-            widths={[400, 900]}
-            sizes="(max-width: 900px) 400px, 900px"
+            class="mx-auto mb-6 sm:rounded-md bg-gray-400 dark:bg-slate-700 hidden md:block max-w-xl"
             alt={post?.excerpt || ""}
-            width={900}
-            height={506}
             loading="eager"
             decoding="async"
+            style="max-width: 650px;"
           />
         ) : (
           <div class="max-w-3xl mx-auto">

@@ -2,9 +2,10 @@
 publishDate: 2024-04-25T00:00:00Z
 author: Eugene Ostroukhov
 authorLink: https://www.linkedin.com/in/eostroukhov/
-title: Case Study - Writing Node.js Inspector Server Following TDD
+title: Case Study - TDD in Node.js Inspector Server and Other Projects
 excerpt: Test Driven Development (TDD) is still seems to be controversial. This article explores the application of TDD in real world projects
 category: Case Studies
+image: ~/assets/images/tdd.png
 tags:
   - case study
   - general

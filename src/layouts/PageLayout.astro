@@ -12,10 +12,10 @@ export interface Props {
   metadata?: MetaData;
 }
 
-// const { metadata } = Astro.props;
+const { metadata } = Astro.props;
 ---
 
-<Layout>
+<Layout metadata={metadata}>
   <main class="flex flex-col overflow-hidden pt-24">
     <slot />
   </main>
