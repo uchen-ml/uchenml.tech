@@ -21,7 +21,7 @@ const services = [
   {
     title: "For Software Developers",
     description:
-      "Designed for software developers. No need to learn new tools or languages.",
+      "Leverages best software development practices. No need to add new tools or languages.",
   },
   {
     title: "Performance",
@@ -37,38 +37,38 @@ enum ComponentState {
 
 const components = [
   {
-    title: "Uchen Runtime",
+    title: "Uchen.ML Runtime",
     description:
-      "Experience high-performance and efficient model inference with Uchen " +
+      "Experience high-performance and efficient model inference with Uchen.ML " +
       "Runtime, a C++20 runtime that integrates seamlessly with modern " +
       "platforms with compatible compilers.",
     state: ComponentState.inuse,
     color: "fuchsia-500",
   },
   {
-    title: "Uchen Core",
+    title: "Uchen.ML Training Core",
     description:
-      "Uchen Core is a C++20 library and set of command-line tools designed " +
-      "for training machine learning models. It supports common workflows " +
+      "A C++20 library and a collection of command-line tools " +
+      "for training machine learning models. Supports common workflows " +
       "with a particular focus on reinforcement learning algorithms.",
     state: ComponentState.inuse,
     color: "indigo-300",
   },
   {
-    title: "Uchen Console",
+    title: "Uchen.ML Console",
     description:
-      "Uchen Console is a hosted tool for quick onboarding and managing " +
+      "A hosted tool for quick onboarding and managing " +
       "Uchen models. Intuitive interface for managing model versions, " +
       "datasets and deployment targets.",
     state: ComponentState.planning,
     color: "orange-500",
   },
   {
-    title: "Uchen Brain Surgeon",
+    title: "Uchen.ML Brain Surgeon",
     description:
-      "Uchen Brain Surgeon is a hosted tool for debugging and refactoring " +
-      "Uchen models. It offers deep insights into the model's \"way of " +
-      'thinking" and encourages teams to explore new ideas.',
+      "A hosted tool for debugging and refactoring " +
+      'Uchen models. It offers deep insights into how the model\'s "thinks"' +
+      " and encourages teams to explore new ideas.",
     color: "cyan-500",
   },
 ];

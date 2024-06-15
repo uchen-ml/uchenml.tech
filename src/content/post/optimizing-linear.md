@@ -3,11 +3,11 @@ publishDate: 2024-04-20T00:00:00Z
 author: Eugene Ostroukhov
 authorLink: https://www.linkedin.com/in/eostroukhov/
 title: Case Study - Optimizing Linear Layer
-excerpt: This case study details the process of optimizing linear layer performance without breaking the core Uchen ML requirements.
+excerpt: This case study details the process of optimizing linear layer performance without breaking the core Uchen.ML requirements.
 category: Case Studies
 tags:
   - c++
-  - uchen ml
+  - uchen.ml
   - optimization
   - case study
 metadata:
@@ -16,11 +16,11 @@ metadata:
 
 ## Overview
 
-As Uchen.ml is heading towards the public announcement and first demos, some low-hanging fruit needs to be picked in terms of optimizations. The most often used piece of any ML library is the linear layer as it is the most basic building block for any neural net. This post details the process of optimizing the code.
+As Uchen.ML is heading towards the public announcement and first demos, some low-hanging fruit needs to be picked in terms of optimizations. The most often used piece of any ML library is the linear layer as it is the most basic building block for any neural net. This post details the process of optimizing the code.
 
 ## Requirements
 
-Uchen is designed for implementing ML solutions that can be easily
+Uchen.ML is designed for implementing ML solutions that can be easily
 integrated into existing systems, with specific goals on Web Assembly, embedded and video games.
 
 To maintain velocity and to avoid overcomplicating build and validation process, following constraints are in place:
@@ -28,7 +28,7 @@ To maintain velocity and to avoid overcomplicating build and validation process,
 - Only the C++20 standard library is used. ABSL dependency is there (logging, asserts and some utilities) but it is under consideration if its inclusion will remain mandatory.
 - No compiler-specific optimizations, including pragmas, conditional compilations or intrinsics.
 - No CPU architecture-specific optimizations. Particularly, no optimizations for one architecture that may be detrimental for others. Apple M2 and Intel Core CPUs are used to inform and direct the optimization efforts.
-- Uchen is and will remain a CPU-only ML framework. There are no plans at this point to implement GPU or other acceleration support.
+- Uchen.ML is and will remain a CPU-only ML framework. There are no plans at this point to implement GPU or other acceleration support.
 
 This constraints will be lifted as the deployment targets and actual requirements are better understood.
 
@@ -246,7 +246,7 @@ alignment is not supported yet, though this will change soon.
 |8, 1000000 |3214760 ns |
 
 "Good" cases worsened, which shows that the updated code is ran. Shape of
-the data is known at compile time when using Uchen so the compilers make
+the data is known at compile time when using Uchen.ML so the compilers make
 informed decisions about vectorization and other optimizations and it looks
 like competing with them is an unnecessary exercise.
 

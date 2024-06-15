@@ -97,7 +97,7 @@ The first test involved directly calling the endpoint implementation with a mock
 
 The project was delivered on time and promptly accepted by the partner.
 
-## UchenML
+## Uchen.ML
 
 ### Problem Statement
 
