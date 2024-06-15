@@ -1,53 +1,14 @@
 ---
-import Layout from "~/layouts/PageLayout.astro";
-
-import Hero from "~/components/widgets/Hero.astro";
-import BlogList from "~/components/blog/List.astro";
-import { findLatestPosts } from "~/utils/blog";
-
-const metadata = {
-  title: "Uchen ML - Pragmatic Machine Learning",
-  ignoreTitleTemplate: true,
-};
-
-const posts = await findLatestPosts({ count: 10 });
+import Layout from "../layouts/Layout.astro";
+import Hero from "../components/sections/Hero.astro";
+import Services from "../components/sections/Services.astro";
+import Components from "../components/sections/Components.astro";
 ---
 
-<Layout metadata={metadata}>
-  <!-- Hero Widget ******************* -->
-
-  <Hero
-    actions={[
-      // {
-      //   variant: 'primary',
-      //   text: 'Get template',
-      //   href: 'https://github.com/onwidget/astrowind',
-      //   target: '_blank',
-      //   icon: 'tabler:download',
-      // },
-      // { text: 'Blog', href: '/blog' },
-    ]}
-  >
-    <Fragment slot="title">
-      <span class="text-accent highlight dark:text-orange-600">Uchen ML</span> is
-      under construction. Stay tuned for updates.
-    </Fragment>
-
-    <Fragment slot="subtitle">Code is still being written...</Fragment>
-
-    <Fragment slot="content"
-      >Follow me on <a
-        href="https://twitter.com/eeuoss"
-        class="text-accent hover:underline hover:font-semibold">Twitter</a
-      >
-      or <a
-        href="https://www.linkedin.com/in/eostroukhov/"
-        class="text-accent hover:underline hover:font-semibold">LinkedIn</a
-      > for updates.
-    </Fragment>
-  </Hero>
-
-  <div class="lg:mx-24 mx-8">
-    <BlogList posts={posts} />
-  </div>
+<Layout title="Welcome to Uchen ML">
+  <main class="flex flex-col gap-y-20 md:gap-y-32 overflow-hidden">
+    <Hero />
+    <Services />
+    <Components />
+  </main>
 </Layout>
