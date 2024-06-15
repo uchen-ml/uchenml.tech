@@ -2,7 +2,7 @@
 publishDate: 2024-04-25T00:00:00Z
 author: Eugene Ostroukhov
 authorLink: https://www.linkedin.com/in/eostroukhov/
-title: Case Study - TDD in Node.js Inspector Server and Other Projects
+title: Case Study - Writing Node.js Inspector Server Following TDD
 excerpt: Test Driven Development (TDD) is still seems to be controversial. This article explores the application of TDD in real world projects
 category: Case Studies
 tags:
@@ -111,17 +111,37 @@ Each component started as a test case. For example, each gradient calculator beg
 
 ### Highlights
 
-The project continues to evolve, despite extended breaks in development. Test cases have been invaluable for catching new issues early, including identifying when new APIs are too cumbersome for unconsidered use cases.
+The project continues to evolve, despite extended breaks in development. Test cases have been invaluable for catching
+new issues early, including identifying when new APIs are too cumbersome for unconsidered use cases.
+
+## Best Practices
+
+- Cleanup aggressively and avoid duplicate test cases. Do not test trivial code (such as getters and setters). Tests
+have maintanance code and can be a significant draw on engineer productivity and even team morale.
+- Test behaviors not the implementation. Use higher level APIs and data that mimics the real-world usage.
+- Use a tool that reruns the tests on file save, such as `jest --watch` or `ibazel`
+- Do not add `TODO` comments in the code. Add disabled or failing tests instead.
 
 ## Conclusion
 
-I consider TDD the essential practice for delivering maintainable software. The test
-cases may serve as a way to track the implementation progress, help onboard new team
-members, and provide a safety net for future changes.
+TDD is goes beyond just writing tests; it fundamentally shapes the design and architecture of the code. Tests help
+understand the requirements and constraints, leading to more robust and error-resistant code. Test cases also serve
+multiple purposes:
 
-### My TDD Best Practices
+- Tracking Implementation Progress: They provide a clear, incremental path of development, showing what features have
+been implemented and what remains to be done. Each passing test signifies a step forward in the project, offering
+a sense of accomplishment and a clear indicator of progress.
 
-- Avoid duplicate test cases. Cleanup aggressively. Too many unnecessary tests can be a huge maintenance burden.
-- Test behaviors not the implementation. Use higher level APIs and data that mimics the real-world usage.
-- Use a tool that reruns the tests in the IDE on file save. E.g. `jest --watch` or `ibazel`
-- Do not add `TODO` comments in the code. Add disabled or failing tests instead.
+- Onboarding New Team Members: For new developers joining the team, test cases offer a practical insight into
+the functionality and expected behavior of the software. They serve as an up-to-date documentation that new team
+members can use to understand the codebase more quickly and effectively.
+
+- Providing a Safety Net for Future Changes: One of the most significant benefits of TDD is the confidence it provides
+when making future modifications. As the software evolves, having a comprehensive suite of tests ensures that
+new changes do not introduce regressions. This safety net allows developers to refactor and improve the code with
+greater assurance.
+
+By integrating TDD into the development process, teams can achieve a higher standard of software quality, foster
+a culture of continuous improvement, and reduce long-term maintenance costs.
+
+
