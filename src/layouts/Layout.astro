@@ -10,6 +10,7 @@ export interface Props {
 }
 
 import type { MetaData as MetaDataType } from "~/types";
+import Analytics from "~/components/common/Analytics.astro";
 
 export interface Props {
   metadata?: MetaDataType;
@@ -32,6 +33,7 @@ const { title } = Astro.props;
       content="Uchen - efficient machine learning framework"
     />
     <Metadata {...metadata} />
+    <Analytics />
     <title>Uchen - {title}</title>
     <link
       href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700&display=swap"
