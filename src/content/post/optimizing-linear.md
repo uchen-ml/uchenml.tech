@@ -8,7 +8,7 @@ category: Case Studies
 tags:
   - c++
   - uchen.ml
-  - optimization
+  - testing
   - case study
 metadata:
   canonical: https://uchenml.tech/optimizing-linear
