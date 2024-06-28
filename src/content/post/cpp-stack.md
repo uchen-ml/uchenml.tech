@@ -3,7 +3,7 @@ publishDate: 2024-06-20T00:00:00Z
 author: Eugene Ostroukhov
 authorLink: https://www.linkedin.com/in/eostroukhov/
 title: Open Source C++ Stack
-excerpt: C++ is a beautiful and powerful language, but it does have its sharp edges. This article details open-source projects that help writing great C++ code and have some fun along the way.
+excerpt: C++ is a beautiful and powerful language, but it does have its sharp edges. This article details open-source projects that help writing and maintaining projects in this language.
 category: Engineering
 tags:
   - c++
@@ -63,23 +63,51 @@ an easiest way to boost the quality of their C++ code.
 
 [bazel.build](https://bazel.build/)
 
-Frankly speaking, I can not recommend this to everyone. It is an amazing build
-system, modelled after Google's internal system that proved it's success over
-and over again. 
+This is a build system based on Google internal build system Blaze. It is a
+proven solution that is capable of handling huge polyglot codebases. 
 
-I have used it for ages, so I find it trivial to setup and my productivity is
-destroyed if I do not have super-fast rebuild or
-[ibazel](https://github.com/bazelbuild/bazel-watcher) in my command line.
-
-Bazel build files are easy to read and author, it has also native support for
-many languages and platforms. Its particular strength is its very fast and
-very efficient caching. It can interactively rebuild and rerun tests even on
+Bazel build files are written in Starlark language that is extensible, easy to
+read and author. Its particular strength is its very fast and very efficient
+caching that relies on checksums and not just the timestamps. I use it daily on
 bigger C++ projects, like gRPC.
 
-But then, I do understand that learning a new build system is a big investment and
-can be hugely disruptive to the team. I also know that Bazel is not widely
-adopted outside of Google so integrating some third-party dependencies can
-be a challenge.
+One thing the Bazel is missing is a powerful ecosystem. It is very easy to
+bring a new library into a project that uses CMake or Makefile but figuring
+out how to integrate a new library into Bazel can be a challenge.
+
+Most libraries below are Bazel-compatible, where integrating them into a project
+is only a matter of adding a few lines to the module file.
+
+Here is Uchen.ML module file:
+```python
+'''
+Uchen core - ML framework
+'''
+module(name = "uchen-core", version = "0.1", compatibility_level = 1)
+bazel_dep(name = "abseil-cpp", version = "20240116.2")
+
+bazel_dep(name = "googletest", version = "1.14.0")
+git_override(
+    module_name = "googletest",
+    remote = "https://github.com/google/googletest.git",
+    commit = "1d17ea141d2c11b8917d2c7d029f1c4e2b9769b2",
+)
+
+bazel_dep(name = "google_benchmark", version = "1.8.3")
+git_override(
+    module_name = "google_benchmark",
+    remote = "https://github.com/google/benchmark.git",
+    commit = "447752540c71f34d5d71046e08192db181e9b02b",
+)
+
+# Dev dependencies
+bazel_dep(name = "hedron_compile_commands", dev_dependency = True)
+git_override(
+    module_name = "hedron_compile_commands",
+    remote = "https://github.com/hedronvision/bazel-compile-commands-extractor.git",
+    commit = "a14ad3a64e7bf398ab48105aaa0348e032ac87f8",
+)
+```
 
 ## Utility Library: Abseil
 
@@ -87,19 +115,20 @@ be a challenge.
 
 A lot of changes introduced in C++11 have been originally developed as a part
 of Boost library. I had my run-ins with Boost and I found it huge and a tad
-unwieldy. I do enjoy Abseil.
+unwieldy. Abseil, on the other hand is very modern and unobtrusive.
 
 Abseil provide a large number of utilities across multiple categories. Some 
 utilities have already become a part of C++ library, like `std::string_view` or
-`std::optional`. Some utilities may or may not eventually become a part of the
-standard library (my favourite is `absl::Cleanup` that seems to be similar to
+`std::optional` (Abseil will use the standard library version if available).
+Some utilities may or may not eventually become a part of the standard library
+(my favourite is `absl::Cleanup` that seems to be similar to
 `std::scope_exit`). A large number of utilities are still out of scope for the
 standard library.
 
-I heavily rely on following parts of Abseil:
+I heavily rely on the following parts of Abseil:
 - [Command Line Flags](https://abseil.io/docs/cpp/guides/flags)
 - [Logging](https://abseil.io/docs/cpp/guides/logging)
-- [String Utilities](https://abseil.io/docs/cpp/guides/strings)
+- [String Utilities](https://abseil.io/docs/cpp/guides/strings) - like string join, format, and such.
 
 Many classes in UchenML are augmented with `AbslStringify` which allows for very
 easy tracing and debugging.
@@ -110,14 +139,101 @@ the Google C++ Style Guide.
 
 ## Testing: Google Test
 
+[Google Test](https://google.github.io/googletest/)
+
+My impression is that Google Test is the most popular C++ testing framework and
+I often see it used in projects outside Google. Not really much to add.
+
+I would definitely recommend to also take a look at GMock. GMock provides some
+[matchers](https://google.github.io/googletest/reference/matchers.html) that can
+also be used for regular assertions. E.g., this is how contents of
+the collection can be checked ignoring the order:
+```cpp
+EXPECT_THAT(collection, ::testing::UnorderedElementsAre(1, 2, 3));
+```
+
 ## Benchmarking: Google Benchmark
 
-## Linters/Sanitizers
+[GitHub](https://github.com/google/benchmark)
+
+Makes writting benchmarks very addictive. I have to cleanup benchmarks all
+the time. Benchmarks are essential when trying to be performance-conscious.
+Modern CPUs and compilers are very complex and reasoning about performance
+is not always straightforward. 
+
+## Linters
+
+Linters keep the code base consistent and help to catch a lot of issues and even
+bugs way before the compiler is ran. [Clang-Tidy](https://clang.llvm.org/extra/clang-tidy/)
+is the one I am relying on. [IWYU](https://include-what-you-use.org/) is really
+helpful in keeping the includes clean, reducing number of dependencies and
+reducing the build times.
+
+## Sanitizers
+
+Sanitizers detect and troubleshoot issues that are difficult to debug, such as
+memory leaks, concurrency issues, and undefined behavior. [ASAN](https://clang.llvm.org/docs/AddressSanitizer.html)
+is the one I am using the most. This is the contents of the `.bazelrc` set adds
+a special Bazel config so ASAN can be ran at any time on any target by adding
+`--config=asan` to the build command:
+```bash
+build:asan --strip=never
+build:asan --copt=-fsanitize=address
+build:asan --copt=-O0
+build:asan --copt=-fno-omit-frame-pointer
+build:asan --copt=-DGPR_NO_DIRECT_SYSCALLS
+build:asan --copt=-DADDRESS_SANITIZER  # used by absl
+build:asan --linkopt=-fsanitize=address
+build:asan --action_env=ASAN_OPTIONS=detect_leaks=1:color=always
+```
+
+Other sanitizers worth mentioning are:
+- [TSAN](https://clang.llvm.org/docs/ThreadSanitizer.html)
+- [MSAN](https://clang.llvm.org/docs/MemorySanitizer.html)
+- [UBSAN](https://clang.llvm.org/docs/UndefinedBehaviorSanitizer.html)
+- [Fuzzer](https://llvm.org/docs/LibFuzzer.html)
 
 ## Serialization: Protobuf
 
+[protobuf.dev](https://protobuf.dev/)
+
+This is a language-agnostic serialization library that is much faster than JSON
+and provides way more compact representation. There are several implementations
+with different features and trade offs. [μpb](https://github.com/protocolbuffers/protobuf/tree/main/upb)
+is a very lightweight C++ implemantion that uses arena allocations.
+
+Protobufs have a large number of features that are very useful in practice:
+- Reflection API
+- JSON serialization
+- Text serialization (makes it very tempting to use protobufs as a configuration
+  format)
+
 ## RPC: gRPC
+
+[grpc.io](https://grpc.io/)
+
+Disclamer: I am working on gRPC full-time so I may be biased.
+
+gRPC is another open-source effort that was informed and inspired by Google
+internal architecture. It is a proven solution (most Google Cloud APIs are
+implemented in gRPC) and is used by projects like TensorFlow, Firebase and
+many others (e.g. Bazel uses it for distributed build support).
+
+This is what gRPC offers that is not readily available in REST:
+- Strongly typed API with codegen support for most popular languages
+- Streaming support, including bi-directional streaming
+- Client and server side load balancing
+- Authentication and authorization support
+- A lot of configuration options for things like timeouts, retries, etc.
+- Built-in support for tracing and monitoring
+
 
 ## Portable SIMD: Highway
 
-## Fuzzing
+[GitHub](https://github.com/google/highway)
+
+One can not utilize the full power of modern CPUs without using SIMD
+instructions. Highway library provides a portable way to use SIMD instructions
+across different platforms, making leveraging SIMD much more practical.
+
+
