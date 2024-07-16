@@ -76,10 +76,10 @@ many languages and platforms. Its particular strength is its very fast and
 very efficient caching. It can interactively rebuild and rerun tests even on
 bigger C++ projects, like gRPC.
 
-But then, I do understand that learning a new build system is a big investment and
-can be hugely disruptive to the team. I also know that Bazel is not widely
-adopted outside of Google so integrating some third-party dependencies can
-be a challenge.
+Bazel makes it trivial to build Protobuf libraries, works support multiple
+languages and most libraries I mention below are trivial to add to a Bazel
+project. I also have ready to go snippets that help me running sanitizelrs like
+ASAN.
 
 ## Utility Library: Abseil
 
