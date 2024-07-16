@@ -3,8 +3,9 @@ publishDate: 2024-06-20T00:00:00Z
 author: Eugene Ostroukhov
 authorLink: https://www.linkedin.com/in/eostroukhov/
 title: Open Source C++ Stack
-excerpt: C++ is a beautiful and powerful language, but it does have its sharp edges. This article details open-source projects that help writing and maintaining projects in this language.
+excerpt: C++ is a beautiful and powerful language, but it does have its sharp edges. This article details open-source projects to reduce the number of cuts.
 category: Engineering
+image: ~/assets/images/absl.png
 tags:
   - c++
   - uchen.ml
@@ -14,75 +15,77 @@ metadata:
 ---
 ## Overview
 
-C++ often carries a reputation for being "unsafe" and "complex,"
-a characterization that I find unjustified based on my extensive experience
-with the language. Over the years, I worked on projects such as Chromium, Node,
-and gRPC — each of which is not only successful but also ubiquitous and subject
-to rigorous scrutiny. Additionally, I have explored other major C++ codebases
-like Unreal Engine and various internal projects. I am amazed by the feats of
-software engineering that C++ enables.
+C++ is often labeled as "unsafe" and "complex," but I find these critiques
+unjustified. My experience working on major projects like Chromium, Node,
+and gRPC — each a non-trivial codebase deployed on millions of devices, both
+virtual and physical, and subject to rigorous scrutiny—has shown me the true
+power and reliability of C++. Let's not forget the remarkable engineering feats
+made possible by C++, such as Unreal Engine. Even Linux and Git, both written
+in C (arguably even less "safe" than C++), stand as testaments to the robust
+potential of these languages.
 
-Many projects I have been involved with have a strong "Google DNA," either
-originating from Google or receiving significant contributions from Google
-engineers. Over years, Google accumulated a wealth of expertise in writing
-C++ - and it is eager to share it with the world.
+There is a trick to writing C++ code in a scalable way. I would call it "write
+C++ the Google way". Google has been using C++ for decades and has accumulated a
+wealth of expertise in writing C++ code that is safe, performant,
+and maintainable. And that expertise is readily available on GitHub.
 
-This article touches on some of the most important open-source projects that
-I am using to build UchenML. There is definitely a learning curve with adopting
-these tools and approaches, but I can not really imagine writing performant
-and maintainable C++ code without them.
+In this article, I want to introduce you to some open-source projects that make
+writing C++ code enjoyable. These projects are designed to work seamlessly
+together, yet you can pick and choose the ones that best fit your needs.
 
-All these projects work great together. Still, you can pick and choose the ones
-that fit your needs best.
+## Google C++ Style Guide: Lingua Franca
 
-## Google C++ Style Guide
+[Explore the Guide on GitHub](https://google.github.io/styleguide/cppguide.html)
 
-[GitHub](https://google.github.io/styleguide/cppguide.html)
+The Google C++ Style Guide explains how to make C++ code beautiful. This
+comprehensive set of conventions ensures consistency across projects, making it
+easier for developers to dive into new codebases with confidence.
 
-This is the very core of the "Google DNA" in C++ development. Thanks to projects
-following the set of common conventions I feel comfortable when I need to dive
-into something new.
-
-This guide does not only cover the identation width 
+The guide goes beyond mere stylistic choices like indentation width
 ([2 spaces](https://google.github.io/styleguide/cppguide.html#Spaces_vs._Tabs))
-or how to name the files (
-[Should be all lowercase and can include underscores (_) or dashes (-)](https://google.github.io/styleguide/cppguide.html#File_Names)) but also goes deep into the language
-feature usage where it will provide a rationale for the choice.
+or file naming conventions ([all lowercase, with underscores (_) or dashes (-)](https://google.github.io/styleguide/cppguide.html#File_Names)).
+It delves deep into language features and provides the rationale behind each
+decision, offering a clear path to writing high-quality, maintainable C++ code.
 
-I think the most controversial convention is the "ban" on exceptions.
-"[We do not use C++ exceptions](https://google.github.io/styleguide/cppguide.html#Exceptions)".
-This is something that is hard to accept coming from other languages. Still,
-turns out, exceptions are not that essential. Some Google-influenced languages
-(such as Go) do great without them and C++ codebases like Chromium or gRPC
-prove C++ can be written without exceptions as well.
+Perhaps the most controversial convention in the guide is the "ban" on
+exceptions. "[We do not use C++ exceptions](https://google.github.io/styleguide/cppguide.html#Exceptions)"
+is a rule that can be hard to accept for developers coming from other languages.
+Yet, exceptions are not as essential as they might seem.
+Languages like Go thrive without them, and C++ projects like Chromium and gRPC
+demonstrate that robust and efficient code can be written without exceptions.
 
-I consistently refer people inside or outside Google to this guide, as
-an easiest way to boost the quality of their C++ code.
+I frequently recommend this guide to developers both inside and outside Google
+as the simplest way to elevate the quality of their C++ code. By adhering to
+these well-established conventions, anyone can write C++ "the Google way" and
+enjoy the benefits of safer, more maintainable, and performant code.
 
-## Bazel
+## Bazel: If You Build It, They Will Come
 
-[bazel.build](https://bazel.build/)
+[Discover Bazel](https://bazel.build/)
 
-This is a build system based on Google internal build system Blaze. It is a
-proven solution that is capable of handling huge polyglot codebases. 
+Bazel is a build system inspired by Google's internal build system. Thousands of
+engineers at Google use Blaze daily to build countless projects, written not
+only in C++ but also in Java, Python, Go, other languages.
 
-Bazel build files are written in Starlark language that is extensible, easy to
-read and author. Its particular strength is its very fast and very efficient
-caching that relies on checksums and not just the timestamps. I use it daily on
-bigger C++ projects, like gRPC.
+Bazel highlights:
+- **Starlark Language**: Bazel build files are written in Starlark, a language
+that is both extensible and easy to read. This simplicity makes it approachable
+for new users and powerful enough for complex build configurations.
+- **Efficient Caching**: One of Bazel's standout features is its efficient
+caching mechanism, which relies on checksums rather than timestamps. This
+results in significantly faster and more reliable builds, a feature I rely on
+daily for large C++ projects like gRPC.
+- **Dependency Tracking**: Bazel excels in dependency tracking, minimizing the
+size of build artifacts and speeding up the build process. This feature ensures
+that only the necessary components are rebuilt, saving valuable time and resources.
+- **Powerful Query Language**: Bazel includes a robust query language that
+allows developers to analyze the build graph, providing deep insights into the
+build process and helping to optimize it further.
 
 Bazel makes it trivial to build Protobuf libraries, supports multiple
 languages and most libraries I mention below are trivial to add to a Bazel
-project.
+project, just look at Uchen.ML module file:
 
-One thing the Bazel is missing is a powerful ecosystem. It is very easy to
-bring a new library into a project that uses CMake or Makefile but figuring
-out how to integrate a new library into Bazel can be a challenge.
-
-Most libraries below are Bazel-compatible, where integrating them into a project
-is only a matter of adding a few lines to the module file.
-
-Here is Uchen.ML module file:
 ```python
 '''
 Uchen core - ML framework
@@ -108,31 +111,30 @@ git_override(
 bazel_dep(name = "hedron_compile_commands", dev_dependency = True)
 git_override(
     module_name = "hedron_compile_commands",
-    remote = "https://github.com/hedronvision/bazel-compile-commands-extractor.git",
+    remote =
+      "https://github.com/hedronvision/bazel-compile-commands-extractor.git",
     commit = "a14ad3a64e7bf398ab48105aaa0348e032ac87f8",
 )
 ```
 
-## Utility Library: Abseil
+## Abseil: Utilities
 
 [abseil.io](https://abseil.io/)
 
-A lot of changes introduced in C++11 have been originally developed as a part
-of Boost library. I had my run-ins with Boost and I found it huge and a tad
-unwieldy. Abseil, on the other hand is very modern and unobtrusive.
+Abseil provides a wide array of utilities across various categories. Some of
+these utilities, such as `absl::string_view` and `absl::optional`, have already
+been adopted into the standard C++ library, with Abseil seamlessly using
+the standard versions when available. Other utilities, like my favorite
+`absl::Cleanup`, seem to be on track to being standartize late (see
+`std::scope_exit`). Many utilities in Abseil remain beyond the current scope
+of the standard library, offering unique functionalities that enhance
+C++ development.
 
-Abseil provide a large number of utilities across multiple categories. Some 
-utilities have already become a part of C++ library, like `std::string_view` or
-`std::optional` (Abseil will use the standard library version if available).
-Some utilities may or may not eventually become a part of the standard library
-(my favourite is `absl::Cleanup` that seems to be similar to
-`std::scope_exit`). A large number of utilities are still out of scope for the
-standard library.
+I heavily rely on the following parts of Abseil for my projects:
 
-I heavily rely on the following parts of Abseil:
-- [Command Line Flags](https://abseil.io/docs/cpp/guides/flags)
-- [Logging](https://abseil.io/docs/cpp/guides/logging)
-- [String Utilities](https://abseil.io/docs/cpp/guides/strings) - like string join, format, and such.
+- **[Command Line Flags](https://abseil.io/docs/cpp/guides/flags)**: Simplifies the management of command line arguments.
+- **[Logging](https://abseil.io/docs/cpp/guides/logging)**: Provides robust logging capabilities.
+- **[String Utilities](https://abseil.io/docs/cpp/guides/strings)**: Includes utilities for string joining, formatting, and more.
 
 Many classes in UchenML are augmented with `AbslStringify` which allows for very
 easy tracing and debugging.
@@ -141,7 +143,7 @@ I would also like to point out the [C++ Tips](https://abseil.io/tips/) section
 that I would consider an essential reading for any C++ developer, on par with
 the Google C++ Style Guide.
 
-## Testing: Google Test
+## Google Test: Industry Standard
 
 [Google Test](https://google.github.io/googletest/)
 
@@ -160,10 +162,10 @@ EXPECT_THAT(collection, ::testing::UnorderedElementsAre(1, 2, 3));
 
 [GitHub](https://github.com/google/benchmark)
 
-Makes writting benchmarks very addictive. I have to cleanup benchmarks all
-the time. Benchmarks are essential when trying to be performance-conscious.
-Modern CPUs and compilers are very complex and reasoning about performance
-is not always straightforward. 
+Writing benchmarks can be a fun and enlightening process, though it's easy to
+get caught up in the quest for better numbers. Despite this, benchmarks are
+crucial for performance-conscious development. Modern CPUs and compilers are
+highly complex, making performance reasoning anything but straightforward.
 
 ## Linters
 
@@ -216,7 +218,7 @@ Protobufs have a large number of features that are very useful in practice:
 
 [grpc.io](https://grpc.io/)
 
-Disclamer: I am working on gRPC full-time so I may be biased.
+Disclamer: I am working on gRPC full-time so I am biased.
 
 gRPC is another open-source effort that was informed and inspired by Google
 internal architecture. It is a proven solution (most Google Cloud APIs are
@@ -239,5 +241,3 @@ This is what gRPC offers that is not readily available in REST:
 One can not utilize the full power of modern CPUs without using SIMD
 instructions. Highway library provides a portable way to use SIMD instructions
 across different platforms, making leveraging SIMD much more practical.
-
-
