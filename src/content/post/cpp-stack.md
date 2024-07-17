@@ -84,38 +84,7 @@ build process and helping to optimize it further.
 
 Bazel makes it trivial to build Protobuf libraries, supports multiple
 languages and most libraries I mention below are trivial to add to a Bazel
-project, just look at Uchen.ML module file:
-
-```python
-'''
-Uchen core - ML framework
-'''
-module(name = "uchen-core", version = "0.1", compatibility_level = 1)
-bazel_dep(name = "abseil-cpp", version = "20240116.2")
-
-bazel_dep(name = "googletest", version = "1.14.0")
-git_override(
-    module_name = "googletest",
-    remote = "https://github.com/google/googletest.git",
-    commit = "1d17ea141d2c11b8917d2c7d029f1c4e2b9769b2",
-)
-
-bazel_dep(name = "google_benchmark", version = "1.8.3")
-git_override(
-    module_name = "google_benchmark",
-    remote = "https://github.com/google/benchmark.git",
-    commit = "447752540c71f34d5d71046e08192db181e9b02b",
-)
-
-# Dev dependencies
-bazel_dep(name = "hedron_compile_commands", dev_dependency = True)
-git_override(
-    module_name = "hedron_compile_commands",
-    remote =
-      "https://github.com/hedronvision/bazel-compile-commands-extractor.git",
-    commit = "a14ad3a64e7bf398ab48105aaa0348e032ac87f8",
-)
-```
+project.
 
 ## Abseil: Utilities
 
@@ -155,7 +124,9 @@ I would definitely recommend to also take a look at GMock. GMock provides some
 also be used for regular assertions. E.g., this is how contents of
 the collection can be checked ignoring the order:
 ```cpp
-EXPECT_THAT(collection, ::testing::UnorderedElementsAre(1, 2, 3));
+EXPECT_THAT(
+  collection,
+  ::testing::UnorderedElementsAre(1, 2, 3));
 ```
 
 ## Benchmarking: Google Benchmark
@@ -188,9 +159,8 @@ build:asan --copt=-fsanitize=address
 build:asan --copt=-O0
 build:asan --copt=-fno-omit-frame-pointer
 build:asan --copt=-DGPR_NO_DIRECT_SYSCALLS
-build:asan --copt=-DADDRESS_SANITIZER  # used by absl
+build:asan --copt=-DADDRESS_SANITIZER
 build:asan --linkopt=-fsanitize=address
-build:asan --action_env=ASAN_OPTIONS=detect_leaks=1:color=always
 ```
 
 Other sanitizers worth mentioning are:
