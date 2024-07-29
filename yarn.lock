@@ -46,11 +46,11 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@astro-community/astro-embed-integration@npm:^0.7.0":
-  version: 0.7.0
-  resolution: "@astro-community/astro-embed-integration@npm:0.7.0"
+"@astro-community/astro-embed-integration@npm:^0.7.1":
+  version: 0.7.1
+  resolution: "@astro-community/astro-embed-integration@npm:0.7.1"
   dependencies:
-    "@astro-community/astro-embed-link-preview": "npm:^0.1.0"
+    "@astro-community/astro-embed-link-preview": "npm:^0.2.0"
     "@astro-community/astro-embed-twitter": "npm:^0.5.4"
     "@astro-community/astro-embed-vimeo": "npm:^0.3.6"
     "@astro-community/astro-embed-youtube": "npm:^0.5.0"
@@ -59,16 +59,16 @@ __metadata:
     unist-util-select: "npm:^4.0.1"
   peerDependencies:
     astro: ^2.0.0 || ^3.0.0-beta || ^4.0.0-beta
-  checksum: 10c0/80d4fd63ac43e14b5e85fd5f17f8741c460ebeb8df7040c811e0c116b741f39a946ca0638d7be97149178c71be7163892235b8f52dbee2821885c98008b235f2
+  checksum: 10c0/e45cb439161a90178ae4463f4d9e54f121caf13b9546233bc9cd961f6fe1e31e80316047d2335ec3d123dfc4d9096fc5a5bdfce73f630f0f0c0b07376d71678e
   languageName: node
   linkType: hard
 
-"@astro-community/astro-embed-link-preview@npm:^0.1.0":
-  version: 0.1.0
-  resolution: "@astro-community/astro-embed-link-preview@npm:0.1.0"
+"@astro-community/astro-embed-link-preview@npm:^0.2.0":
+  version: 0.2.1
+  resolution: "@astro-community/astro-embed-link-preview@npm:0.2.1"
   dependencies:
     "@astro-community/astro-embed-utils": "npm:^0.1.1"
-  checksum: 10c0/5a5b796417d98f82eeee802caf55a2993352152c549c862768d57587437f633bd13125b51421529f3cd94c7e249caa25ff114ea02513089468c5861d89c4ad68
+  checksum: 10c0/a759fdd5ddd53c6b0926e74be517eb0de98095275b4f01e4f8d0b1b8f3289f525f727d9dce71632eb053901ae27a79ee076c19b6fad421c2b468ce0038e2c4af
   languageName: node
   linkType: hard
 
@@ -3001,17 +3001,17 @@ __metadata:
   linkType: hard
 
 "astro-embed@npm:^0.7.1":
-  version: 0.7.1
-  resolution: "astro-embed@npm:0.7.1"
+  version: 0.7.2
+  resolution: "astro-embed@npm:0.7.2"
   dependencies:
-    "@astro-community/astro-embed-integration": "npm:^0.7.0"
-    "@astro-community/astro-embed-link-preview": "npm:^0.1.0"
+    "@astro-community/astro-embed-integration": "npm:^0.7.1"
+    "@astro-community/astro-embed-link-preview": "npm:^0.2.0"
     "@astro-community/astro-embed-twitter": "npm:^0.5.4"
     "@astro-community/astro-embed-vimeo": "npm:^0.3.7"
     "@astro-community/astro-embed-youtube": "npm:^0.5.0"
   peerDependencies:
     astro: ^2.0.0 || ^3.0.0-beta || ^4.0.0-beta
-  checksum: 10c0/d6032be5fd948614df006e3317e6f49ba3fca61e528f383108a7096203c2fab3555baefbb34315d634091da15c413625238801de2029207ae43123e5a0d320a0
+  checksum: 10c0/e0e17407391486d2abae85f3c451390c12600523581773645b6aa1b43f9302e02c8773e6cf902603dd7154013335fad6c4f0259a1707f991cb8d8fe64f829fe0
   languageName: node
   linkType: hard
 
