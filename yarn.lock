@@ -1482,9 +1482,9 @@ __metadata:
   linkType: hard
 
 "@fontsource-variable/inter@npm:^5.0.17":
-  version: 5.0.18
-  resolution: "@fontsource-variable/inter@npm:5.0.18"
-  checksum: 10c0/c9a4742ea6ff7f58d079f895a404e08be495f38f70ca5b2eaaf0e9a4f2f050a14b3e270facfbb519a8e363f8563715c3c64c974cf4d9ba94cfb6f80861eb0729
+  version: 5.0.19
+  resolution: "@fontsource-variable/inter@npm:5.0.19"
+  checksum: 10c0/48c7b5d176e56d3cb59221db401de63c6b5f75fbcd10891dc97e2d5d3724d31b3588214faced8bfc84bc92bf99d2946d255e53af506570c1ab4ec3086da63bbf
   languageName: node
   linkType: hard
 
