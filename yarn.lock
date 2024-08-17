@@ -1033,11 +1033,11 @@ __metadata:
   linkType: hard
 
 "@iconify-json/tabler@npm:^1.1.110":
-  version: 1.1.119
-  resolution: "@iconify-json/tabler@npm:1.1.119"
+  version: 1.1.120
+  resolution: "@iconify-json/tabler@npm:1.1.120"
   dependencies:
     "@iconify/types": "npm:*"
-  checksum: 10c0/50e13f3d20255f60b176983bc81dddf6cc06c47b7c818c4af3daf4c2f6884f3b8370716a8f8a87704a5e43258b0ef3ef1b6075318a4d3b9db911896865b021ca
+  checksum: 10c0/27dfe3522cd7688e5263750d874cbc4587f9e1483af0877e03c1e9ec3f5fbb4fe9f2bdb7c0fc6ce3d8e740a795d6de9dc6d94d102f365abe3a9ad80fef03349a
   languageName: node
   linkType: hard
 
