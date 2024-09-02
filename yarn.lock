@@ -1023,11 +1023,11 @@ __metadata:
   linkType: hard
 
 "@iconify-json/flat-color-icons@npm:^1.1.10":
-  version: 1.1.11
-  resolution: "@iconify-json/flat-color-icons@npm:1.1.11"
+  version: 1.2.0
+  resolution: "@iconify-json/flat-color-icons@npm:1.2.0"
   dependencies:
     "@iconify/types": "npm:*"
-  checksum: 10c0/b4ec9bb64f8579b97c16e847846d30a9997181417d3aed49b545b0635990aaaf3c4e2820ad364910dada590a2968bf51ebf26d63de2cf5425744b294125570d8
+  checksum: 10c0/b76ba35840c736a96b3fb84b9cd8cbfb7ad1ca0844bdd5c3c7f4fbf270b547c4098d40c730cf63ed0e3e5e06faa978703fd14fb1840d5e5cfa3f126c596a99d2
   languageName: node
   linkType: hard
 
