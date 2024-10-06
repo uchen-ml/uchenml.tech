@@ -262,11 +262,11 @@ __metadata:
   linkType: hard
 
 "@astrolib/seo@npm:^1.0.0-beta.5":
-  version: 1.0.0-beta.6
-  resolution: "@astrolib/seo@npm:1.0.0-beta.6"
+  version: 1.0.0-beta.8
+  resolution: "@astrolib/seo@npm:1.0.0-beta.8"
   peerDependencies:
-    astro: ^1.2.1 || ^2.0.0 || ^3.0.0-beta.0 || ^3.0.0 || ^4.0.0
-  checksum: 10c0/e4e6585bcb979541be52aa167268e4b6b093958ef328d3f4940d3c84042a0e7618b050b9feee10d70090487e1c762bbb8646a400c12e254dc04ef2662fb249ed
+    astro: ^1.2.1 || ^2.0.0 || ^3.0.0-beta.0 || ^3.0.0 || ^4.0.0 || ^5.0.0-beta.0 || ^5.0.0
+  checksum: 10c0/33b7917ffa1ed270b750a35f9fe41d01cbed18a40ef7c20992536c02767d1e0fe6194d2c76dc41b4b893135e1a51c8804c72bbe33eb0abc949283b7b72fd2bf6
   languageName: node
   linkType: hard
 
