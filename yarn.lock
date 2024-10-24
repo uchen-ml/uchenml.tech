@@ -1665,9 +1665,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@playform/compress@npm:0.1.4":
-  version: 0.1.4
-  resolution: "@playform/compress@npm:0.1.4"
+"@playform/compress@npm:0.1.6":
+  version: 0.1.6
+  resolution: "@playform/compress@npm:0.1.6"
   dependencies:
     "@playform/pipe": "npm:0.1.1"
     "@types/csso": "npm:5.0.4"
@@ -1682,8 +1682,8 @@ __metadata:
     lightningcss: "npm:1.27.0"
     sharp: "npm:0.33.5"
     svgo: "npm:3.3.2"
-    terser: "npm:5.34.1"
-  checksum: 10c0/324bfa9f992bc9cf3ff154095baa60a251a0e0afee9aaf584d5d08e8e956f339d5624d57a013baab3e267245d14b3b9e9e9ff7d00226c7e9cbdbd7a44b9d5628
+    terser: "npm:5.36.0"
+  checksum: 10c0/ee5cb7a915267af32b22bf5f3b76666ae296a6cbe16e4c23e8d12c6eb975bcadaa8deb955455d83b9ebd5c5a815191d6f9e61cc6294b337b4a28366d7d36ff6a
   languageName: node
   linkType: hard
 
@@ -2455,7 +2455,7 @@ __metadata:
     "@fontsource-variable/inter": "npm:^5.0.17"
     "@iconify-json/flat-color-icons": "npm:^1.1.10"
     "@iconify-json/tabler": "npm:^1.1.110"
-    "@playform/compress": "npm:0.1.4"
+    "@playform/compress": "npm:0.1.6"
     "@tailwindcss/typography": "npm:^0.5.12"
     "@types/js-yaml": "npm:^4.0.9"
     "@types/lodash.merge": "npm:^4.6.9"
@@ -9683,9 +9683,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"terser@npm:5.34.1":
-  version: 5.34.1
-  resolution: "terser@npm:5.34.1"
+"terser@npm:5.36.0":
+  version: 5.36.0
+  resolution: "terser@npm:5.36.0"
   dependencies:
     "@jridgewell/source-map": "npm:^0.3.3"
     acorn: "npm:^8.8.2"
@@ -9693,7 +9693,7 @@ __metadata:
     source-map-support: "npm:~0.5.20"
   bin:
     terser: bin/terser
-  checksum: 10c0/51c7d704c5c4ae88bf937124112c9972aed4e1fd29d805cc2d86e0f54cd631ecd4e69db5bb3c1e3b450c741c86e2313328bea0fde925329e8a31a07a7941723c
+  checksum: 10c0/f4ed2bead19f64789ddcfb85b7cef78f3942f967b8890c54f57d1e35bc7d547d551c6a4c32210bce6ba45b1c738314bbfac6acbc6c762a45cd171777d0c120d9
   languageName: node
   linkType: hard
 
