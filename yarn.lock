@@ -10209,9 +10209,9 @@ __metadata:
   linkType: hard
 
 "unpic@npm:^3.18.0":
-  version: 3.18.0
-  resolution: "unpic@npm:3.18.0"
-  checksum: 10c0/74625e21de696075adaa7debe5fab43302027aba8bc44145f0b809a34f9a55612c2cfad3d0d1fef6fdc52d244ada4faa37ec479d013342aed78ce2305aa88572
+  version: 3.18.1
+  resolution: "unpic@npm:3.18.1"
+  checksum: 10c0/59a6e06033baf67e35a9f11206a2aefbcb3233a5d5f7402766ebd1808f1d0e3768110418c2ad8a1000c785da65ac62ec368d261e69ed76994d595d12026bccd8
   languageName: node
   linkType: hard
 
