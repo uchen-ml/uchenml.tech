@@ -18,11 +18,11 @@
     "lint:fix": "eslint . --fix"
   },
   "dependencies": {
-    "@astrojs/rss": "4.0.9",
+    "@astrojs/rss": "4.0.10",
     "@astrojs/sitemap": "3.2.1",
     "@astrolib/seo": "^1.0.0-beta.5",
     "@fontsource-variable/inter": "^5.0.17",
-    "astro": "4.16.16",
+    "astro": "4.16.17",
     "astro-embed": "^0.9.0",
     "astro-icon": "^1.1.0",
     "limax": "4.1.0",
