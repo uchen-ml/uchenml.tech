@@ -1,7 +1,7 @@
 import path from 'path';
 import { fileURLToPath } from 'url';
 
-import { defineConfig, squooshImageService } from 'astro/config';
+import { defineConfig } from 'astro/config';
 
 import sitemap from '@astrojs/sitemap';
 import partytown from '@astrojs/partytown';
@@ -69,11 +69,6 @@ export default defineConfig({
       config: "./src/config.yaml",
     }),
   ],
-
-  image: {
-    service: squooshImageService(),
-    domains: ["cdn.pixabay.com"],
-  },
 
   markdown: {
     remarkPlugins: [readingTimeRemarkPlugin],
