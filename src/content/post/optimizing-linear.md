@@ -84,19 +84,19 @@ Linear layer runs the following operation to produce the output:
 Which translated into the following C++ code:
 
 ```c++
-  output_t operator()(const input_t& inputs,
-                      const Parameters<parameter_count>& parameters) const {
-    output_t outputs;
-    constexpr size_t Is = input_t::elements;
-    for (size_t output = 0; output < Outputs; ++output) {
-      outputs[output] = parameters[output * (Is + 1) + Is];
-      for (size_t input = 0; input < Is; ++input) {
-        outputs[output] +=
-            inputs[input] * parameters[output * (Is + 1) + input];
-      }
+output_t operator()(const input_t& inputs,
+                    const Parameters<parameter_count>& parameters) const {
+  output_t outputs;
+  constexpr size_t Is = input_t::elements;
+  for (size_t output = 0; output < Outputs; ++output) {
+    outputs[output] = parameters[output * (Is + 1) + Is];
+    for (size_t input = 0; input < Is; ++input) {
+      outputs[output] +=
+          inputs[input] * parameters[output * (Is + 1) + input];
     }
-    return outputs;
   }
+  return outputs;
+}
 ```
 
 Given _n_ inputs and _m_ outputs, parameters layout is:
@@ -123,21 +123,21 @@ Intel architecture shows approximately 3.4x spread between the best case scenari
 The first optimization is to change the iteration order. Instead of iterating over the outputs and then over the inputs, we iterate over the inputs and then over the outputs. This change allows for better cache utilization and reduces the number of cache misses.
 
 ```c++
-  output_t operator()(
-      const input_t& inputs,
-      const Parameters<(Input::elements + 1) * Outputs>& parameters) const {
-    auto it = parameters.begin();
-    output_t outputs;
-    for (size_t i = 0; i < outputs.size(); i++) {
-      outputs[i] = *it++;
-    }
-    for (auto input : inputs) {
-      for (auto& output : outputs) {
-        output += (*it++) * input;
-      }
-    }
-    return outputs;
+output_t operator()(
+    const input_t& inputs,
+    const Parameters<(Input::elements + 1) * Outputs>& parameters) const {
+  auto it = parameters.begin();
+  output_t outputs;
+  for (size_t i = 0; i < outputs.size(); i++) {
+    outputs[i] = *it++;
   }
+  for (auto input : inputs) {
+    for (auto& output : outputs) {
+      output += (*it++) * input;
+    }
+  }
+  return outputs;
+}
 ```
 
 Note that the code uses a linear iteration over the parameters, making the memory
@@ -210,27 +210,26 @@ the performance gains could be if we tried them. I did not use AVX as data
 alignment is not supported yet, though this will change soon.
 
 ```c++
-  output_t operator()(
-      const input_t& inputs,
-      const Parameters<(Input::elements + 1) * Outputs>& parameters) const {
-    auto it = parameters.begin();
-    output_t outputs;
-    for (size_t i = 0; i < outputs.size(); i++) {
-      outputs[i] = (*it++);
-    }
-    for (size_t i = 0; i < Input::elements; i += 4) {
-      __m128 input = _mm_loadu_ps(&(*inputs.begin()) + i);
-      for (size_t j = 0; j < Outputs; ++j) {
-        // Parameters are accessed in the wrong order - this is a bug!
-        // This code is for benchmark only.
-        __m128 parameters = _mm_load_ps(&(*it));
-        __m128 product = _mm_dp_ps(input, parameters, 0xf1);
-        it += 4;
-        outputs[j] += _mm_cvtss_f32(product);
-      }
-    }
-    return outputs;
+output_t operator()(
+    const input_t& inputs,
+    const Parameters<(Input::elements + 1) * Outputs>& parameters) const {
+  auto it = parameters.begin();
+  output_t outputs;
+  for (size_t i = 0; i < outputs.size(); i++) {
+    outputs[i] = (*it++);
   }
+  for (size_t i = 0; i < Input::elements; i += 4) {
+    __m128 input = _mm_loadu_ps(&(*inputs.begin()) + i);
+    for (size_t j = 0; j < Outputs; ++j) {
+      // Parameters are accessed in the wrong order - this is a bug!
+      // This code is for benchmark only.
+      __m128 parameters = _mm_load_ps(&(*it));
+      __m128 product = _mm_dp_ps(input, parameters, 0xf1);
+      it += 4;
+      outputs[j] += _mm_cvtss_f32(product);
+    }
+  }
+  return outputs;
 };
 ```
 
@@ -253,24 +252,24 @@ like competing with them is an unnecessary exercise.
 Manually unrolling the loop yields similar results:
 
 ```c++
-  output_t operator()(
-      const input_t& inputs,
-      const Parameters<(Input::elements + 1) * Outputs>& parameters) const {
-    auto it = parameters.begin();
-    output_t outputs;
-    for (size_t i = 0; i < outputs.size(); i++) {
-      outputs[i] = (*it++);
-    }
-    for (auto input : inputs) {
-      for (size_t i = 0; i < Outputs; i++) {
-        outputs[i++] += (*it++) * input;
-        outputs[i++] += (*it++) * input;
-        outputs[i++] += (*it++) * input;
-        outputs[i] += (*it++) * input;
-      }
-    }
-    return outputs;
+output_t operator()(
+    const input_t& inputs,
+    const Parameters<(Input::elements + 1) * Outputs>& parameters) const {
+  auto it = parameters.begin();
+  output_t outputs;
+  for (size_t i = 0; i < outputs.size(); i++) {
+    outputs[i] = (*it++);
   }
+  for (auto input : inputs) {
+    for (size_t i = 0; i < Outputs; i++) {
+      outputs[i++] += (*it++) * input;
+      outputs[i++] += (*it++) * input;
+      outputs[i++] += (*it++) * input;
+      outputs[i] += (*it++) * input;
+    }
+  }
+  return outputs;
+}
 ```
 | <inputs, outputs> | i7-10700KF |
 | :--------: | :--------: |

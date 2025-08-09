@@ -139,4 +139,47 @@ import "@fontsource-variable/inter";
     word-break: break-all;
     max-width: 100%;
   }
+
+  /* Custom scrollbar styling for code blocks */
+  .prose pre::-webkit-scrollbar {
+    height: 8px;
+  }
+
+  .prose pre::-webkit-scrollbar-track {
+    background: rgba(156, 163, 175, 0.2);
+    border-radius: 4px;
+  }
+
+  .prose pre::-webkit-scrollbar-thumb {
+    background: rgba(156, 163, 175, 0.5);
+    border-radius: 4px;
+    transition: background-color 0.2s ease;
+  }
+
+  .prose pre::-webkit-scrollbar-thumb:hover {
+    background: rgba(156, 163, 175, 0.7);
+  }
+
+  /* Dark mode scrollbar */
+  .dark .prose pre::-webkit-scrollbar-track {
+    background: rgba(75, 85, 99, 0.3);
+  }
+
+  .dark .prose pre::-webkit-scrollbar-thumb {
+    background: rgba(107, 114, 128, 0.6);
+  }
+
+  .dark .prose pre::-webkit-scrollbar-thumb:hover {
+    background: rgba(107, 114, 128, 0.8);
+  }
+
+  /* Firefox scrollbar styling */
+  .prose pre {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(156, 163, 175, 0.5) rgba(156, 163, 175, 0.2);
+  }
+
+  .dark .prose pre {
+    scrollbar-color: rgba(107, 114, 128, 0.6) rgba(75, 85, 99, 0.3);
+  }
 </style>
