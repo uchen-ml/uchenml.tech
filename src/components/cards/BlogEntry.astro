@@ -1,6 +1,13 @@
 ---
 export interface Props {
-  entry: any;
+  entry: {
+    slug: string;
+    data: {
+      title: string;
+      publishDate?: Date;
+    };
+    render: () => Promise<{ Content: unknown }>;
+  };
 }
 
 const { entry } = Astro.props as Props;
@@ -18,7 +25,7 @@ const { Content } = await entry.render();
   </div>
   <div class="space-y-4 relative p-5 sm:p-6 lg:p-8">
     <div
-      class="prose dark:prose-invert
+      class="prose dark:prose-invert max-w-none
         prose-h1:font-bold prose-h1:text-2xl
         prose-a:text-blue-600 prose-p:text-justify prose-img:rounded-xl"
     >
