@@ -1482,7 +1482,7 @@ astro-icon@^1.1.0:
     "@iconify/types" "^2.0.0"
     "@iconify/utils" "^2.1.30"
 
-astro@*, astro@^5.1.8:
+astro@*, astro@^5.12.8:
   version "5.12.9"
   resolved "https://registry.yarnpkg.com/astro/-/astro-5.12.9.tgz#f579b09add12a4bd02f438866c5a6a5832c9215e"
   integrity sha512-cZ7kZ61jyE5nwSrFKSRyf5Gds+uJELqQxJFqMkcgiWQvhWZJUSShn8Uz3yc9WLyLw5Kim5P5un9SkJSGogfEZQ==
