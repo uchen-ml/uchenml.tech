@@ -1,0 +1,41 @@
+name: Deploy to Staging Branch
+
+on:
+  push:
+    branches: [ main ]
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: 20
+        cache: 'yarn'
+        
+    - name: Install dependencies
+      run: yarn install --frozen-lockfile
+      
+    - name: Build
+      run: yarn build
+      
+    - name: Deploy to staging branch
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./dist
+        publish_branch: staging
+        force_orphan: true
+        user_name: 'github-actions[bot]'
+        user_email: 'github-actions[bot]@users.noreply.github.com'
+        commit_message: 'Deploy staging site'
+        tag_name: 'staging-${{ github.sha }}'
+        tag_message: 'Staging deployment for ${{ github.sha }}'
