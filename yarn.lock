@@ -518,10 +518,10 @@
   dependencies:
     "@iconify/types" "*"
 
-"@iconify-json/tabler@^1.1.110":
-  version "1.2.20"
-  resolved "https://registry.npmjs.org/@iconify-json/tabler/-/tabler-1.2.20.tgz"
-  integrity sha512-xnM7QO42USWGFM9ahH94uXhRxDOrN6nTNZ+glNHNjeyj6SB2YDeENr9AqrI1hWDacMK1FnjeFc4TI1oyF40Gcw==
+"@iconify-json/tabler@^1.2.22":
+  version "1.2.22"
+  resolved "https://registry.yarnpkg.com/@iconify-json/tabler/-/tabler-1.2.22.tgz#81a77eb7e14d60832d3425c9e986b0634734c33a"
+  integrity sha512-KmCtTzZyz7dtszdQGJ5wbWqko6exhI38e4aCQqWZE1Z2wGUqBsMXrRWawXkAp6/XNBebt54h0lcxFCaTYBwFJg==
   dependencies:
     "@iconify/types" "*"
 
