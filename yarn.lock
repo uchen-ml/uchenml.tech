@@ -522,10 +522,10 @@
   resolved "https://registry.npmjs.org/@humanwhocodes/retry/-/retry-0.4.2.tgz"
   integrity sha512-xeO57FpIu4p1Ri3Jq/EXq4ClRm86dVF2z/+kvFnyqVYRavTZmaFaUBbWCOuuTh0o/g7DSsk6kc2vrS4Vl5oPOQ==
 
-"@iconify-json/flat-color-icons@^1.1.10":
-  version "1.2.1"
-  resolved "https://registry.npmjs.org/@iconify-json/flat-color-icons/-/flat-color-icons-1.2.1.tgz"
-  integrity sha512-iv1NQai4ThVJf5RGB2UBY/EYG4P5KpdnRTUM1hqLweD6OmWxZUyNJkqLzwns6/t+VBYM0H5gS/ckSWyxxEIYmQ==
+"@iconify-json/flat-color-icons@^1.2.3":
+  version "1.2.3"
+  resolved "https://registry.yarnpkg.com/@iconify-json/flat-color-icons/-/flat-color-icons-1.2.3.tgz#39aba64eab0af44f5dda4f821f9643bf9dc2a170"
+  integrity sha512-KcmJ7CY0TKFv5GuBjiS4/v++jEcNXna1jfY+yq014tnw/MN/jMI2oYpoMHGuIpYtUqDu7eove+WySnOYO8nS3w==
   dependencies:
     "@iconify/types" "*"
 
