@@ -1856,11 +1856,6 @@ buffer-from@^1.0.0:
   resolved "https://registry.npmjs.org/buffer-from/-/buffer-from-1.1.2.tgz"
   integrity sha512-E+XQCRwSbaaiChtv6k6Dwgc+bx+Bs6vuKJHHl5kox/BaKbhiXzqQOwK4cO22yElGp2OCmjwVhT3HmxgyPGnJfQ==
 
-bulk-replace@0.0.1:
-  version "0.0.1"
-  resolved "https://registry.npmjs.org/bulk-replace/-/bulk-replace-0.0.1.tgz"
-  integrity sha512-IxLEnfsCYLjlpf6mG7SWpWgA4A8IAT5dAX3FxXHFn+6FTLf3ums771elQ74sj1BCOVanBf6esu0rEC6zgwfmIg==
-
 call-bind-apply-helpers@^1.0.1, call-bind-apply-helpers@^1.0.2:
   version "1.0.2"
   resolved "https://registry.npmjs.org/call-bind-apply-helpers/-/call-bind-apply-helpers-1.0.2.tgz"
@@ -3101,7 +3096,7 @@ globals@^14.0.0:
   resolved "https://registry.npmjs.org/globals/-/globals-14.0.0.tgz"
   integrity sha512-oahGvuMGQlPw/ivIYBjVSrWAfWLBeku5tpPE2fOPLi+WHffIWbuh2tCjhyQhTBPMf5E9jDEH4FOmTYgYwbKwtQ==
 
-globals@^16.0.0, globals@^16.5.0:
+globals@^16.0.0:
   version "16.5.0"
   resolved "https://registry.npmjs.org/globals/-/globals-16.5.0.tgz"
   integrity sha512-c/c15i26VrJ4IRt5Z89DnIzCGDn9EcebibhAOjw5ibqEHsE1wLUgkPn9RDmNcUKyU87GeaL633nyJ+pplFR2ZQ==
@@ -3340,12 +3335,10 @@ hastscript@^9.0.0:
     property-information "^6.0.0"
     space-separated-tokens "^2.0.0"
 
-hepburn@^1.2.0:
-  version "1.2.1"
-  resolved "https://registry.npmjs.org/hepburn/-/hepburn-1.2.1.tgz"
-  integrity sha512-v/VUHmiHhNbjDBGxYkwDXzYvfOTIKFquAn0KrPtH1D3Zv539VBPEOGYoWpLnb/FBT9vAx9anQef3noJZ2fPIBw==
-  dependencies:
-    bulk-replace "0.0.1"
+hepburn@^1.2.2:
+  version "1.2.2"
+  resolved "https://registry.npmjs.org/hepburn/-/hepburn-1.2.2.tgz"
+  integrity sha512-DeykBc4XmfAWsnN+Y1Svi9uaQnnz21Q/ARuGWvIBxP1iUFeMIWL41DfVkgTh7tU23LFIbmIBO2Bk17BTPu0kVA==
 
 html-escaper@3.0.3, html-escaper@^3.0.3:
   version "3.0.3"
@@ -3820,14 +3813,14 @@ lilconfig@^3.0.0, lilconfig@^3.1.3:
   resolved "https://registry.npmjs.org/lilconfig/-/lilconfig-3.1.3.tgz"
   integrity sha512-/vlFKAoH5Cgt3Ie+JLhRbwOsCQePABiU3tJ1egGvyQ+33R/vcwM2Zl2QR/LzjsBeItPt3oSVXapn+m4nQDvpzw==
 
-limax@4.1.0:
-  version "4.1.0"
-  resolved "https://registry.npmjs.org/limax/-/limax-4.1.0.tgz"
-  integrity sha512-vciK5Mx+y+GrJjcVjbEjItzZ6Pbt+LXCb9d3qo3B+HcnTLZYRFyuszD6Hbwk0PDVEmZzS+FA0nT5aBy1HlZgGg==
+limax@4.2.1:
+  version "4.2.1"
+  resolved "https://registry.npmjs.org/limax/-/limax-4.2.1.tgz"
+  integrity sha512-7YeQ8dV9XIjYIjBSFUSOfoxQFAtG2ckD0FGKYCuRaPJKc3IKXZwqsSLD5PnlPklp4y5ncPWhiL142ijAtHGNgw==
   dependencies:
-    hepburn "^1.2.0"
+    hepburn "^1.2.2"
     lodash.deburr "^4.1.0"
-    pinyin-pro "^3.14.0"
+    pinyin-pro "^3.27.0"
     speakingurl "^14.0.1"
 
 lines-and-columns@^1.1.6:
@@ -4954,10 +4947,10 @@ pify@^2.3.0:
   resolved "https://registry.npmjs.org/pify/-/pify-2.3.0.tgz"
   integrity sha512-udgsAY+fTnvv7kI7aaxbqwWNb0AHiB0qBO89PZKPkoTmGOgdbrHDKD+0B2X4uTfJ/FT1R09r9gTsjUjNJotuog==
 
-pinyin-pro@^3.14.0:
-  version "3.26.0"
-  resolved "https://registry.npmjs.org/pinyin-pro/-/pinyin-pro-3.26.0.tgz"
-  integrity sha512-HcBZZb0pvm0/JkPhZHWA5Hqp2cWHXrrW/WrV+OtaYYM+kf35ffvZppIUuGmyuQ7gDr1JDJKMkbEE+GN0wfMoGg==
+pinyin-pro@^3.27.0:
+  version "3.27.0"
+  resolved "https://registry.npmjs.org/pinyin-pro/-/pinyin-pro-3.27.0.tgz"
+  integrity sha512-Osdgjwe7Rm17N2paDMM47yW+jUIUH3+0RGo8QP39ZTLpTaJVDK0T58hOLaMQJbcMmAebVuK2ePunTEVEx1clNQ==
 
 pirates@^4.0.1:
   version "4.0.6"
