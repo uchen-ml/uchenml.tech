@@ -1,17 +1,13 @@
 ---
+import { render } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
+
 export interface Props {
-  entry: {
-    slug: string;
-    data: {
-      title: string;
-      publishDate?: Date;
-    };
-    render: () => Promise<{ Content: unknown }>;
-  };
+  entry: CollectionEntry<'post'>;
 }
 
 const { entry } = Astro.props as Props;
-const { Content } = await entry.render();
+const { Content } = await render(entry);
 ---
 
 <div
@@ -19,7 +15,7 @@ const { Content } = await entry.render();
 >
   <div class="bg-orange-200 p-5 sm:p-6 lg:p-8 flex border-b border-orange-500">
     <h1 class="text-3xl font-bold grow">
-      <a href={`/${entry.slug}`}>{entry.data.title}</a>
+      <a href={`/${entry.id}`}>{entry.data.title}</a>
     </h1>
     <span class="self-end">{entry.data?.publishDate?.toDateString()}</span>
   </div>
