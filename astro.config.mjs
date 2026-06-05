@@ -12,7 +12,7 @@ import astrowind from './vendor/integration';
 
 import { readingTimeRemarkPlugin, responsiveTablesRehypePlugin, lazyImagesRehypePlugin } from './src/utils/frontmatter.mjs';
 
-import tailwind from "@astrojs/tailwind";
+import tailwindcss from "@tailwindcss/vite";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -27,7 +27,6 @@ const whenExternalScripts = (items = []) =>
 // https://astro.build/config
 export default defineConfig({
   integrations: [
-    tailwind(),
     sitemap(),
     icon({
       include: {
@@ -76,6 +75,7 @@ export default defineConfig({
   },
 
   vite: {
+    plugins: [tailwindcss()],
     resolve: {
       alias: {
         "~": path.resolve(__dirname, "./src"),

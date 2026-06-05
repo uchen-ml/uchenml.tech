@@ -1,14 +1,14 @@
 ---
 import merge from "lodash.merge";
-import { AstroSeo } from "@astrolib/seo";
-
-import type { Props as AstroSeoProps } from "@astrolib/seo";
+import { SEO } from "astro-seo";
+import type { Props as SEOProps, TwitterCardType } from "astro-seo";
 
 import { SITE, METADATA, I18N } from "astrowind:config";
 import type { MetaData } from "~/types";
 import { getCanonical } from "~/utils/permalinks";
 
 import { adaptOpenGraphImages } from "~/utils/images";
+import type { OpenGraph } from "~/utils/images";
 
 export interface Props extends MetaData {
   dontUseTitleTemplate?: boolean;
@@ -24,7 +24,18 @@ const {
   twitter = {},
 } = Astro.props;
 
-const seoProps: AstroSeoProps = merge(
+interface FlatSeoProps {
+  title: string;
+  titleTemplate: string;
+  canonical: string;
+  noindex?: boolean;
+  nofollow?: boolean;
+  description?: string;
+  openGraph: OpenGraph;
+  twitter: { handle?: string; site?: string; cardType?: string };
+}
+
+const seoProps = merge(
   {
     title: "",
     titleTemplate: "%s",
@@ -72,12 +83,70 @@ const seoProps: AstroSeoProps = merge(
     openGraph: { url: canonical, ...openGraph },
     twitter: twitter,
   }
+) as FlatSeoProps;
+
+const adaptedOpenGraph = await adaptOpenGraphImages(
+  seoProps.openGraph,
+  Astro.site
 );
+
+const firstImage = adaptedOpenGraph.images?.[0];
+const firstImageUrl =
+  typeof firstImage?.url === "string" ? firstImage.url : undefined;
+
+const astroSeoProps: SEOProps = {
+  title: seoProps.title,
+  titleTemplate: seoProps.titleTemplate,
+  canonical: seoProps.canonical,
+  noindex: seoProps.noindex,
+  nofollow: seoProps.nofollow,
+  description: seoProps.description,
+  twitter: {
+    card: seoProps.twitter.cardType as TwitterCardType,
+    site: seoProps.twitter.site,
+    creator: seoProps.twitter.handle,
+  },
+};
+
+if (
+  adaptedOpenGraph.type &&
+  (seoProps.title || adaptedOpenGraph.title) &&
+  firstImageUrl
+) {
+  astroSeoProps.openGraph = {
+    basic: {
+      title: adaptedOpenGraph.title ?? seoProps.title,
+      type: adaptedOpenGraph.type,
+      image: firstImageUrl,
+      url: adaptedOpenGraph.url,
+    },
+    optional: {
+      description: adaptedOpenGraph.description ?? seoProps.description,
+      locale: adaptedOpenGraph.locale,
+      siteName: adaptedOpenGraph.site_name,
+    },
+    image: {
+      url: firstImageUrl,
+      width: firstImage.width,
+      height: firstImage.height,
+      alt: firstImage.alt,
+    },
+    article: adaptedOpenGraph.article
+      ? {
+          publishedTime: adaptedOpenGraph.article.publishedTime,
+          modifiedTime: adaptedOpenGraph.article.modifiedTime,
+          expirationTime: adaptedOpenGraph.article.expirationTime,
+          authors: adaptedOpenGraph.article.authors
+            ? [...adaptedOpenGraph.article.authors]
+            : undefined,
+          section: adaptedOpenGraph.article.section,
+          tags: adaptedOpenGraph.article.tags
+            ? [...adaptedOpenGraph.article.tags]
+            : undefined,
+        }
+      : undefined,
+  };
+}
 ---
 
-<AstroSeo
-  {...{
-    ...seoProps,
-    openGraph: await adaptOpenGraphImages(seoProps?.openGraph, Astro.site),
-  }}
-/>
+<SEO {...astroSeoProps} />

@@ -1,109 +1,26 @@
 ---
-import "@fontsource-variable/inter";
-
-// 'DM Sans'
-// Nunito
-// Dosis
-// Outfit
-// Roboto
-// Literata
-// 'IBM Plex Sans'
-// Karla
-// Poppins
-// 'Fira Sans'
-// 'Libre Franklin'
-// Inconsolata
-// Raleway
-// Oswald
-// 'Space Grotesk'
-// Urbanist
 ---
 
 <style is:inline>
-  :root {
-    --aw-font-sans: "InterVariable";
-    --aw-font-serif: "InterVariable";
-    --aw-font-heading: "InterVariable";
-
-    --aw-color-primary: rgb(1 97 239);
-    --aw-color-secondary: rgb(1 84 207);
-    --aw-color-accent: rgb(109 40 217);
-
-    --aw-color-text-heading: "InterVariable";
-    --aw-color-text-default: rgb(16 16 16);
-    --aw-color-text-muted: rgb(16 16 16 / 66%);
-    --aw-color-bg-page: rgb(255 255 255);
-
-    --aw-color-bg-page-dark: rgb(3 6 32);
-
-    ::selection {
-      background-color: lavender;
-    }
+  ::selection {
+    background-color: lavender;
   }
 
-  .dark {
-    --aw-font-sans: "InterVariable";
-    --aw-font-serif: "InterVariable";
-    --aw-font-heading: "InterVariable";
-
-    --aw-color-primary: rgb(1 97 239);
-    --aw-color-secondary: rgb(1 84 207);
-    --aw-color-accent: rgb(109 40 217);
-
-    --aw-color-text-heading: rgb(247, 248, 248);
-    --aw-color-text-default: rgb(229 236 246);
-    --aw-color-text-muted: rgb(229 236 246 / 66%);
-    --aw-color-bg-page: rgb(3 6 32);
-
-    ::selection {
-      background-color: black;
-      color: snow;
-    }
+  .dark ::selection {
+    background-color: black;
+    color: snow;
   }
 
-  /* Code block overflow handling for small screens */
-  .prose pre {
-    overflow-x: auto;
-    white-space: pre;
-    word-wrap: normal;
-  }
-
-  .prose code {
-    white-space: pre-wrap;
-    word-break: break-word;
-  }
-
-  /* Ensure code blocks don't break layout on small screens */
-  .prose pre code {
-    white-space: pre;
-    word-wrap: normal;
-  }
-
-  /* Prevent horizontal overflow on small screens */
-  html {
-    overflow-x: hidden;
-    max-width: 100vw;
-  }
-
+  html,
   body {
     overflow-x: hidden;
     max-width: 100vw;
   }
 
-  /* Ensure all elements respect viewport width */
-  * {
-    max-width: 100%;
-    box-sizing: border-box;
-  }
-
-  /* Ensure prose content doesn't overflow container */
   .prose {
-    max-width: 100%;
     overflow-wrap: break-word;
-    word-wrap: break-word;
   }
 
-  /* Responsive prose sizing */
   @media (max-width: 640px) {
     .prose {
       font-size: 0.875rem;
@@ -111,36 +28,20 @@ import "@fontsource-variable/inter";
     }
   }
 
-  /* Additional overflow protection for prose elements */
-  .prose p,
-  .prose li,
-  .prose h1,
-  .prose h2,
-  .prose h3,
-  .prose h4,
-  .prose h5,
-  .prose h6 {
-    max-width: 100%;
-    overflow-wrap: break-word;
-    word-wrap: break-word;
+  .prose code {
+    white-space: pre-wrap;
+    word-break: break-word;
   }
 
-  /* Ensure code blocks are properly contained */
-  .prose pre {
-    max-width: 100%;
-    overflow-x: auto;
+  .prose pre code {
     white-space: pre;
     word-wrap: normal;
   }
 
-  /* Handle long inline code */
   .prose code:not(pre code) {
-    white-space: pre-wrap;
     word-break: break-all;
-    max-width: 100%;
   }
 
-  /* Custom scrollbar styling for code blocks */
   .prose pre::-webkit-scrollbar {
     height: 8px;
   }
@@ -160,7 +61,6 @@ import "@fontsource-variable/inter";
     background: rgba(156, 163, 175, 0.7);
   }
 
-  /* Dark mode scrollbar */
   .dark .prose pre::-webkit-scrollbar-track {
     background: rgba(75, 85, 99, 0.3);
   }
@@ -173,7 +73,6 @@ import "@fontsource-variable/inter";
     background: rgba(107, 114, 128, 0.8);
   }
 
-  /* Firefox scrollbar styling */
   .prose pre {
     scrollbar-width: thin;
     scrollbar-color: rgba(156, 163, 175, 0.5) rgba(156, 163, 175, 0.2);

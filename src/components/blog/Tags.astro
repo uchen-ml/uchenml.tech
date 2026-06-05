@@ -31,7 +31,7 @@ const {
       </>
       <ul class={className}>
         {tags.map((tag) => (
-          <li class="bg-gray-50 dark:bg-slate-700 inline-block mr-2 rtl:mr-0 rtl:ml-2 mb-2 py-0.5 px-2 lowercase border border-slate-300 border-1 rounded-sm">
+          <li class="bg-gray-50 dark:bg-slate-700 inline-block mr-2 rtl:mr-0 rtl:ml-2 mb-2 py-0.5 px-2 lowercase border border-slate-300 rounded-xs">
             {!APP_BLOG?.tag?.isEnabled ? (
               tag.title
             ) : (

@@ -1,0 +1,17 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-body: rgb(var(--color-bg));
+  --color-box-bg: rgb(var(--color-box));
+  --color-box-shadow: var(--box-sd);
+  --color-box-border: var(--box-border);
+  --color-primary: #1d4ed8;
+  --color-heading-1: rgb(var(--heading-1));
+  --color-heading-2: rgb(var(--heading-2));
+  --color-heading-3: rgb(var(--heading-3));
+
+  --breakpoint-midmd: 880px;
+}
