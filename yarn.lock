@@ -219,10 +219,10 @@
   dependencies:
     prismjs "^1.30.0"
 
-"@astrojs/rss@4.0.18":
-  version "4.0.18"
-  resolved "https://registry.npmjs.org/@astrojs/rss/-/rss-4.0.18.tgz"
-  integrity sha512-wc5DwKlbTEdgVAWnHy8krFTeQ42t1v/DJqeq5HtulYK3FYHE4krtRGjoyhS3eXXgfdV6Raoz2RU3wrMTFAitRg==
+"@astrojs/rss@4.0.19":
+  version "4.0.19"
+  resolved "https://registry.yarnpkg.com/@astrojs/rss/-/rss-4.0.19.tgz#a0e6198dba8125fc3e0d8a2645d0987f538cbc09"
+  integrity sha512-e+z5wYeYtffQdHQO8c2tkSd2JEBdAuRXJV4ZEU5IxkYeE6e39woDd7nw1PH1Kk2tEYNCYuKdylnnbhGmt61awA==
   dependencies:
     fast-xml-parser "^5.5.7"
     piccolore "^0.1.3"
