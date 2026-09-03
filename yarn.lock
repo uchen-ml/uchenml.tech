@@ -663,9 +663,9 @@
     "@iconify/types" "*"
 
 "@iconify-json/tabler@^1.1.110":
-  version "1.2.35"
-  resolved "https://registry.npmjs.org/@iconify-json/tabler/-/tabler-1.2.35.tgz"
-  integrity sha512-/sJMqHvh5ZWrEERVfDCT5NjVDeKJdhosFtKjJofAVl+P/3AzLiryOQw7WvrfDF25Xa5N/eoOQ15Y1jnhYXxBoQ==
+  version "1.2.38"
+  resolved "https://registry.yarnpkg.com/@iconify-json/tabler/-/tabler-1.2.38.tgz#adb0599c15dc09e884b9d225ba5b2850953bfef5"
+  integrity sha512-9v6ooRU/bKOK/Whv4w2aiK5gBnfCV9Ei+uD1iDDeLu2b+EnF3G3ZKkRKWEOOLG8bJyfKn6XEia6gUQ9oO7cF+Q==
   dependencies:
     "@iconify/types" "*"
 
