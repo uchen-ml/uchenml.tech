@@ -19,7 +19,7 @@
   },
   "dependencies": {
     "@astrojs/rss": "4.0.18",
-    "@astrojs/sitemap": "3.7.3",
+    "@astrojs/sitemap": "3.7.4",
     "astro": "^6.0.0",
     "astro-embed": "^0.13.0",
     "astro-icon": "^1.1.0",
@@ -30,7 +30,7 @@
   },
   "devDependencies": {
     "@astrojs/mdx": "^6.0.0",
-    "@astrojs/partytown": "2.1.7",
+    "@astrojs/partytown": "2.1.8",
     "@eslint/js": "^10.0.0",
     "@iconify-json/flat-color-icons": "^1.1.10",
     "@iconify-json/tabler": "^1.1.110",
