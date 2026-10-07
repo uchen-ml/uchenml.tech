@@ -1,5 +1,5 @@
 {
-	"generated": "2026-10-07T04:40:15.397Z",
+	"generated": "2026-10-07T13:05:20.754Z",
 	"host": {
 		"cpu": "Apple M4 Max",
 		"os": "darwin 27.0.0",
@@ -25,14 +25,14 @@
 			"detail": "langguess 0.1.0, WASM SIMD, Node",
 			"timing": {
 				"200": {
-					"medianUs": 9.7,
-					"minUs": 9.6,
-					"maxUs": 9.9
+					"medianUs": 9.5,
+					"minUs": 9.4,
+					"maxUs": 9.6
 				},
 				"large": {
-					"medianUs": 32.5,
-					"minUs": 32.3,
-					"maxUs": 32.6
+					"medianUs": 31.8,
+					"minUs": 31.4,
+					"maxUs": 32
 				}
 			},
 			"codeBytes": 134958,
@@ -63,24 +63,24 @@
 		{
 			"id": "uchen-native",
 			"label": "Uchen / native",
-			"detail": "same C++ Detector, arm64 native, -c opt",
+			"detail": "same C++ Detector, arm64 native, -c opt, logging off",
 			"timing": {
 				"200": {
-					"medianUs": 5.9,
+					"medianUs": 5.8,
 					"minUs": 5.8,
 					"maxUs": 5.9
 				},
 				"large": {
-					"medianUs": 15.7,
-					"minUs": 15.7,
-					"maxUs": 15.7
+					"medianUs": 15.4,
+					"minUs": 15.3,
+					"maxUs": 15.4
 				}
 			},
-			"codeBytes": 318128,
+			"codeBytes": 222096,
 			"codeFiles": [
 				{
 					"name": "native_bench (arm64, stripped)",
-					"bytes": 318128
+					"bytes": 222096
 				}
 			],
 			"paramBytes": 958550,
@@ -103,14 +103,14 @@
 			"detail": "upstream @vscode/vscode-languagedetection 1.0.23, tfjs 3.21.0 CPU backend",
 			"timing": {
 				"200": {
-					"medianUs": 2445.6,
-					"minUs": 2424.9,
-					"maxUs": 2450.2
+					"medianUs": 2417.8,
+					"minUs": 2389.4,
+					"maxUs": 2439.1
 				},
 				"large": {
-					"medianUs": 53477.5,
-					"minUs": 52846.9,
-					"maxUs": 53715.3
+					"medianUs": 52649.3,
+					"minUs": 52172,
+					"maxUs": 53395.1
 				}
 			},
 			"codeBytes": 828196,
@@ -144,14 +144,14 @@
 			"detail": "LiteRT.js 2.5.3, sparse .tflite, XNNPACK, 1 thread, JS featurizer",
 			"timing": {
 				"200": {
-					"medianUs": 29.4,
-					"minUs": 29.2,
-					"maxUs": 29.6
+					"medianUs": 29.1,
+					"minUs": 28.6,
+					"maxUs": 29.2
 				},
 				"large": {
-					"medianUs": 69,
-					"minUs": 68.4,
-					"maxUs": 69.1
+					"medianUs": 67.9,
+					"minUs": 67.1,
+					"maxUs": 68.1
 				}
 			},
 			"codeBytes": 9669616,
@@ -188,13 +188,13 @@
 		"Each framework ran in its own fresh process, one at a time, in an order rotated per run; each time is the median of 5 per-process medians, and the bracket is their range.",
 		"Node figures are warm medians: Uchen and LiteRT.js over 1,000 batches of ≥ 2,000 µs after 50 warm-up calls; TensorFlow.js over 100 single calls after 10 warm-up calls. Real sporadic calls, TensorFlow.js above all, are slower.",
 		"Native timings: raw UTF-8 bytes of the file prefix, no JS string preprocessing; the Detector reads at most the first 10.001 KB; here 0.200 / 201.420 KB of the same text as UTF-8.",
-		"LiteRT.js sparse chosen as the faster variant (sum of medians 98.5 µs vs dense 199.3 µs); runtime litert_wasm_internal, XNNPACK does not take every op.",
+		"LiteRT.js sparse chosen as the faster variant (sum of medians 97 µs vs dense 194.8 µs); runtime litert_wasm_internal, XNNPACK does not take every op.",
 		"LiteRT.js sparse: the bench repeats one fixed input, so no per-call input resize (when the number of distinct byte pairs changes, as in real use, the public API costs +8–9 µs at 200 chars and +5–6 µs at 10,001 chars; separate re-measurement) — this favors LiteRT.js.",
 		"LiteRT.js code is the relaxed-SIMD build; the SIMD-only compat build it falls back to is 9,607.427 KB (litert_wasm_compat_internal.js 273.246 KB, litert_wasm_compat_internal.wasm 9,334.181 KB).",
 		"TensorFlow.js is timed and sized as the published package: its dist/lib/index.js, loading 979.js (the CPU backend).",
 		"Parameter format is how the 674,604 weights are stored. The TF.js files use uint8 affine, per-tensor quantization: each weight is one byte q, read back as min + q × scale, with min and scale stored once for each of the 9 tensors. Uchen and TensorFlow.js both expand them to float32 when loading. The .tflite that LiteRT.js runs stores them as float32, not quantized, so it is 2.8× the size of the TF.js files.",
-		"Sizes are uncompressed KB (1,000 bytes) of the files as built or published; Uchen's code is dist/lib/index.js plus the langguess.wasm it loads; the native binary is the whole bench executable, stripped (unstripped 425.120 KB). model.json and the .bin are byte-identical to the published package's.",
+		"Sizes are uncompressed KB (1,000 bytes) of the files as built or published; Uchen's code is dist/lib/index.js plus the langguess.wasm it loads; the native binary is the whole bench executable, stripped (unstripped 290.224 KB). model.json and the .bin are byte-identical to the published package's.",
 		"Parity: every framework's top language matches Uchen / WASM's on every input; largest confidence difference from it 5.2e-8.",
-		"Host load average (1/5/15 min): 5.47 / 3.43 / 2.95 at start, 2.61 / 3.19 / 3.03 at end; all 16 CPUs 15.7% busy over the run, the bench's own single thread included."
+		"Host load average (1/5/15 min): 2.94 / 2.14 / 1.97 at start, 2.38 / 2.13 / 2.00 at end; all 16 CPUs 8.9% busy over the run, the bench's own single thread included."
 	]
 }
