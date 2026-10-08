@@ -56,7 +56,7 @@
     "tailwindcss": "^4.0.0",
     "typescript": "^6.0.0",
     "typescript-eslint": "^8.0.0",
-    "vite": "^7.0.0"
+    "vite": "^8.0.0"
   },
   "resolutions": {
     "astro-icon/@iconify/tools": "^5.0.0"
