@@ -22,16 +22,16 @@
   dependencies:
     "@astro-community/astro-embed-utils" "^0.2.0"
 
-"@astro-community/astro-embed-bluesky@^0.2.0":
-  version "0.2.1"
-  resolved "https://registry.npmjs.org/@astro-community/astro-embed-bluesky/-/astro-embed-bluesky-0.2.1.tgz"
-  integrity sha512-rp6pgyEviUH+ysVCVi6bGcHycFSBTc7q3u5IDNyZOiGtCL4BCurDyDvanbKRVlgn50TWKBziomXxvHSLzQPTQQ==
+"@astro-community/astro-embed-bluesky@^0.2.3":
+  version "0.2.3"
+  resolved "https://registry.yarnpkg.com/@astro-community/astro-embed-bluesky/-/astro-embed-bluesky-0.2.3.tgz#f9bb35d4c74099396fc20f6f0b1781790881f938"
+  integrity sha512-smevGXIBZTOwsS4S4KpSRzQp9v2C2DOg/3kR5cfpLB9Tc1TG4WFy2qxY6zyxzMfHsEAk7RsLdkQqrdEQ8ylf6A==
   dependencies:
-    "@atcute/atproto" "^3.1.11"
-    "@atcute/bluesky" "^3.3.3"
-    "@atcute/bluesky-richtext-segmenter" "^3.0.0"
-    "@atcute/client" "^4.2.1"
-    "@atcute/lexicons" "^1.3.0"
+    "@atcute/atproto" "^4.0.3"
+    "@atcute/bluesky" "^4.0.14"
+    "@atcute/bluesky-richtext-segmenter" "^3.0.1"
+    "@atcute/client" "^5.1.1"
+    "@atcute/lexicons" "^2.0.2"
 
 "@astro-community/astro-embed-gist@^0.1.0":
   version "0.1.0"
@@ -40,12 +40,12 @@
   dependencies:
     "@astro-community/astro-embed-utils" "^0.2.0"
 
-"@astro-community/astro-embed-integration@^0.12.0":
-  version "0.12.0"
-  resolved "https://registry.npmjs.org/@astro-community/astro-embed-integration/-/astro-embed-integration-0.12.0.tgz"
-  integrity sha512-ozw6ObA5/6tEEynitxKJAtiuSeAaXQmlD1SWbvlCz1vaYyDW9So7xHFVaHtqFYVhonAW3k/9scTJC98cu6xI8Q==
+"@astro-community/astro-embed-integration@^0.13.0":
+  version "0.13.0"
+  resolved "https://registry.yarnpkg.com/@astro-community/astro-embed-integration/-/astro-embed-integration-0.13.0.tgz#40d09a3848e5807b6e6c2e8cb89d90e8acefcd27"
+  integrity sha512-lHan0L43UIdFZYomXn9s/9zd5a5Z+w82D0Gs2PjarWG5MUbHPMcuaLbbFLxASEeDaBBM0BexT4/G+8W+5qLvIQ==
   dependencies:
-    "@astro-community/astro-embed-bluesky" "^0.2.0"
+    "@astro-community/astro-embed-bluesky" "^0.2.3"
     "@astro-community/astro-embed-gist" "^0.1.0"
     "@astro-community/astro-embed-link-preview" "^0.3.1"
     "@astro-community/astro-embed-mastodon" "^0.1.1"
@@ -53,7 +53,7 @@
     "@astro-community/astro-embed-vimeo" "^0.3.12"
     "@astro-community/astro-embed-youtube" "^0.5.10"
     "@types/unist" "^3.0.3"
-    astro-auto-import "^0.5.1"
+    astro-auto-import "^0.6.0"
     unist-util-select "^5.1.0"
 
 "@astro-community/astro-embed-link-preview@^0.3.1":
@@ -255,63 +255,64 @@
   dependencies:
     yaml "^2.8.3"
 
-"@atcute/atproto@^3.1.11", "@atcute/atproto@^3.1.12":
-  version "3.1.12"
-  resolved "https://registry.npmjs.org/@atcute/atproto/-/atproto-3.1.12.tgz"
-  integrity sha512-SaHY0vV5+VfS2ViOcbYtxPmmh82vbxoK5ccHTGn5+ciHNY2arEVcBUFbIQKtsQP4PPZ+lNAVooH+Wh62flvCzg==
+"@atcute/atproto@^4.0.3", "@atcute/atproto@^4.0.4":
+  version "4.0.4"
+  resolved "https://registry.yarnpkg.com/@atcute/atproto/-/atproto-4.0.4.tgz#0db52f754e95c27f5ec54172af2b0ad80844fdfb"
+  integrity sha512-aEp5wQVPVbZcFJUwoi54tyT+ehRI/xtPe9T0zIvcryHAVXF/zxHtNboM+htbZLOAGsDFsqzgCyxph0Bafw7L8w==
   dependencies:
-    "@atcute/lexicons" "^1.3.1"
+    "@atcute/lexicons" "^2.0.3"
 
-"@atcute/bluesky-richtext-segmenter@^3.0.0":
-  version "3.0.0"
-  resolved "https://registry.npmjs.org/@atcute/bluesky-richtext-segmenter/-/bluesky-richtext-segmenter-3.0.0.tgz"
-  integrity sha512-NhZTUKtFpeBBbILwAcxj5u4RobIoHOmGw3CAaaEFNebKYSvmTecrXJ7XufHw5DFOUdr8SiKXQVRQxGAxulMNWg==
+"@atcute/bluesky-richtext-segmenter@^3.0.1":
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/@atcute/bluesky-richtext-segmenter/-/bluesky-richtext-segmenter-3.0.2.tgz#5d1807c60f528ab5c608a12307aade310c422edb"
+  integrity sha512-LXsUuElLQ/gQe2g04SzgTeEbSwhcnmswioGdneve8e3vE+FU353EjuEVIsnA/H5rnGeLswLdrua7Io1twezynA==
 
-"@atcute/bluesky@^3.3.3":
-  version "3.3.5"
-  resolved "https://registry.npmjs.org/@atcute/bluesky/-/bluesky-3.3.5.tgz"
-  integrity sha512-DmzdCQ1VkPRBsIMr79EDxLWLpg0UNWVahFjMelfzau717r+I3ceJm9SxfOK/of+biLOUj4rlr00tNZT+BRe6Ww==
+"@atcute/bluesky@^4.0.14":
+  version "4.0.25"
+  resolved "https://registry.yarnpkg.com/@atcute/bluesky/-/bluesky-4.0.25.tgz#b9da9a7c343d410fdb26ebfe32b079b09f0306ea"
+  integrity sha512-oUjcpJrz5yy5lgNOvPC/9yZitK7V3tL01LVaiPDfQi4YB4ERbUirVAkb416O//n50tIAkBclhIF3I2MOPk+Pgg==
   dependencies:
-    "@atcute/atproto" "^3.1.12"
-    "@atcute/lexicons" "^1.3.1"
+    "@atcute/atproto" "^4.0.4"
+    "@atcute/lexicons" "^2.1.1"
 
-"@atcute/client@^4.2.1":
-  version "4.2.2"
-  resolved "https://registry.npmjs.org/@atcute/client/-/client-4.2.2.tgz"
-  integrity sha512-z16BaGgdO6WIkDCxqeI+zhnh2KmW9jsjd312PJ6YYsoDBpPPqL+WkBmxQ7eO9C6CMFxXsZpYcM81RzZEETA4PQ==
+"@atcute/client@^5.1.1":
+  version "5.1.2"
+  resolved "https://registry.yarnpkg.com/@atcute/client/-/client-5.1.2.tgz#45fbfa81937da9bc8b8ff179155d0c297c741b68"
+  integrity sha512-V3MOJudmmbuiFfrmLR3/ZGA+PKcI4E4ZNEDGKMX/YrvFrHyElD1/gb8NxLesrlIcHefiulqfX9dAl6hOkIt7CA==
   dependencies:
-    "@atcute/identity" "^1.1.5"
-    "@atcute/lexicons" "^1.3.1"
+    "@atcute/identity" "^2.0.2"
+    "@atcute/lexicons" "^2.1.0"
 
-"@atcute/identity@^1.1.5":
-  version "1.1.5"
-  resolved "https://registry.npmjs.org/@atcute/identity/-/identity-1.1.5.tgz"
-  integrity sha512-5i9nl1UVnBDPCumUwrLNl4BZpGvQ/XABEXbjhiw3PQwRUfpQA8FqByDGxXy2gWpFDrNvQ9yVuOoNsjzxJgjjVA==
+"@atcute/identity@^2.0.2":
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/@atcute/identity/-/identity-2.0.2.tgz#ef904ee18de6fe39071d216acaed16022ffb269e"
+  integrity sha512-amr/EQceqVtBVmjBK4uUF7nKKYuRttadigpvOcAn4dnO6SNSwSjQi8KDH9LnukEotPsSP4UDsQvNfHWEoUcslw==
   dependencies:
-    "@atcute/lexicons" "^1.3.1"
-    "@badrap/valita" "^0.4.6"
+    "@atcute/lexicons" "^2.0.3"
+    valibot "^1.4.2"
 
-"@atcute/lexicons@^1.3.0", "@atcute/lexicons@^1.3.1":
-  version "1.3.1"
-  resolved "https://registry.npmjs.org/@atcute/lexicons/-/lexicons-1.3.1.tgz"
-  integrity sha512-2JVxDmHt+QwsUoPyVYWIN7ZLRLfLx4GeJxKFjA9ofStuby9hCMv7Q4GAPIXuJD8wPv8vrnhr1yRNQhiJX+bthw==
+"@atcute/lexicons@^2.0.2", "@atcute/lexicons@^2.0.3", "@atcute/lexicons@^2.1.0", "@atcute/lexicons@^2.1.1":
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/@atcute/lexicons/-/lexicons-2.1.1.tgz#0362b2528c6ab2f4b53323827c31cdee9478e564"
+  integrity sha512-kHyqUW8g/Fq9LTctGh0TVBx0AmtecV6VSrRprrSbqKqHe9q8C6y+YPL3EMNq2l93XA1iDHkkvYwLdTcKL/lNbA==
   dependencies:
-    "@atcute/uint8array" "^1.1.1"
-    "@atcute/util-text" "^1.3.1"
+    "@atcute/uint8array" "^1.1.5"
+    "@atcute/util-text" "^1.3.4"
+    "@oomfware/eval" "^0.1.0"
     "@standard-schema/spec" "^1.1.0"
     esm-env "^1.2.2"
 
-"@atcute/uint8array@^1.1.1":
-  version "1.1.2"
-  resolved "https://registry.npmjs.org/@atcute/uint8array/-/uint8array-1.1.2.tgz"
-  integrity sha512-n+lutnbN9mKzSjSVdfsYfzJ40u2971H+iLSL46D6d7zcrA4delxusf/ftGFvj5oGW03OioaFgQOy3Lqa3JmTeA==
+"@atcute/uint8array@^1.1.5":
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/@atcute/uint8array/-/uint8array-1.2.1.tgz#0cd5b561fd69ead68698c305f894e7c8238e0858"
+  integrity sha512-qsDY5lKIutT5FJeVOD3Au0OxqRJjEd5UKm4z7zM0kMQFX4vMKfBIEmBMDAEUpwZXlpxkvGhVZ1PEu67BG9o8cw==
 
-"@atcute/util-text@^1.3.1":
-  version "1.3.1"
-  resolved "https://registry.npmjs.org/@atcute/util-text/-/util-text-1.3.1.tgz"
-  integrity sha512-MRgJXkx67znuBXuoAYCJkBZyd3OApL7zZlNf5kXhuoCXcdiu1nblRDycYTADSkym4epBSQWxh26kmI9sewaq6A==
+"@atcute/util-text@^1.3.4":
+  version "1.3.4"
+  resolved "https://registry.yarnpkg.com/@atcute/util-text/-/util-text-1.3.4.tgz#6b7037c5d98d4430806450fd2743b7e3d2da34ce"
+  integrity sha512-u2UAM7iSM09sQaSG9jtxWFSPgB8boVj50/BoyMvYnhVgGBu+nXIuAcdDUQCsZA44YZgTPPhN/b86JX+jH7SPzQ==
   dependencies:
-    unicode-segmenter "^0.14.5"
+    unicode-segmenter "^0.17.0"
 
 "@babel/helper-string-parser@^7.29.7":
   version "7.29.7"
@@ -337,11 +338,6 @@
   dependencies:
     "@babel/helper-string-parser" "^7.29.7"
     "@babel/helper-validator-identifier" "^7.29.7"
-
-"@badrap/valita@^0.4.6":
-  version "0.4.6"
-  resolved "https://registry.npmjs.org/@badrap/valita/-/valita-0.4.6.tgz"
-  integrity sha512-4kdqcjyxo/8RQ8ayjms47HCWZIF5981oE5nIenbfThKDxWXtEHKipAOWlflpPJzZx9y/JWYQkp18Awr7VuepFg==
 
 "@capsizecss/unpack@^4.0.0":
   version "4.0.0"
@@ -962,6 +958,11 @@
   dependencies:
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
+
+"@oomfware/eval@^0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@oomfware/eval/-/eval-0.1.0.tgz#0c8c0e997f7c3810eef60c06be2490cb64950075"
+  integrity sha512-EIkukTd3zDQEHUjcfFRDq79Jgm4OEyUrEUvp/SwgjfoH2POaE5cvaswIonFwdt8fSzJF5xtAdgcgIoKD8sPpjg==
 
 "@oslojs/encoding@^1.1.0":
   version "1.1.0"
@@ -1647,6 +1648,11 @@ acorn@^8.0.0, acorn@^8.15.0, acorn@^8.16.0:
   resolved "https://registry.npmjs.org/acorn/-/acorn-8.16.0.tgz"
   integrity sha512-UVJyE9MttOsBQIDKw1skb9nAwQuR5wuGD3+82K6JgJlm/Y+KI92oNsMNGZCYdDsVtRHSak0pcV5Dno5+4jh9sw==
 
+acorn@^8.18.0:
+  version "8.19.0"
+  resolved "https://registry.yarnpkg.com/acorn/-/acorn-8.19.0.tgz#6b26fd97ce1cc9dc50bdf7ad305e9f1384d4f28a"
+  integrity sha512-oJlA3XiRm7Cyk6qFD2Jn8ak9B7jSy0qy00ADO3+8dpT0LSjFihQYv4C02LFCSYJV3Q37xYwwRy5m+IpIiUzqWw==
+
 ajv-draft-04@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/ajv-draft-04/-/ajv-draft-04-1.0.0.tgz#3b64761b268ba0b9e668f0b41ba53fce0ad77fc8"
@@ -1717,22 +1723,22 @@ astring@^1.8.0:
   resolved "https://registry.npmjs.org/astring/-/astring-1.9.0.tgz"
   integrity sha512-LElXdjswlqjWrPpJFg1Fx4wpkOCxj1TDHlSV4PlaRxHGWko024xICaa97ZkMfs6DRKlCguiAI+rbXv5GWwXIkg==
 
-astro-auto-import@^0.5.1:
-  version "0.5.1"
-  resolved "https://registry.npmjs.org/astro-auto-import/-/astro-auto-import-0.5.1.tgz"
-  integrity sha512-7YZKVA7LE5nLkopOM+KIHqnh6g2CfHrysj2JUXNBrC3FppHH42RSNBM7mgsEgaq2lgHVDt7hsDQIA0JKTwIN8A==
+astro-auto-import@^0.6.0:
+  version "0.6.0"
+  resolved "https://registry.yarnpkg.com/astro-auto-import/-/astro-auto-import-0.6.0.tgz#b6d9f6ea8df8588c4aacb0903ec893a753500960"
+  integrity sha512-ru98hrmIZcLvNIcQWtGHKlYE2C+5+8dp86vGnDiGpdmqcFcG/Tn7uNVGhF1CUkvxNRtE+YZhmWTD94lnxY++rA==
   dependencies:
-    acorn "^8.15.0"
+    acorn "^8.18.0"
 
-astro-embed@^0.13.0:
-  version "0.13.0"
-  resolved "https://registry.npmjs.org/astro-embed/-/astro-embed-0.13.0.tgz"
-  integrity sha512-SIp+ES9zYpCOLGJbbgnzbzjmSeYvNXteHnOwD1tu3UX5cyeQ6eOFRBos6a96pyJ7GQxdcn/R/NK1KUH/h/Mamg==
+astro-embed@^0.14.0:
+  version "0.14.0"
+  resolved "https://registry.yarnpkg.com/astro-embed/-/astro-embed-0.14.0.tgz#b0514980246fc98776994472200cb9b8592f1ee3"
+  integrity sha512-VpOnmbeReZvjhK9SYEEsGKZOXBJtrSBMohkVnUwi2ue+qZ19jhM5I3p6SE1NYTi6NY2yoRKJb8J2OtjVDR3lMQ==
   dependencies:
     "@astro-community/astro-embed-baseline-status" "^0.2.2"
-    "@astro-community/astro-embed-bluesky" "^0.2.0"
+    "@astro-community/astro-embed-bluesky" "^0.2.3"
     "@astro-community/astro-embed-gist" "^0.1.0"
-    "@astro-community/astro-embed-integration" "^0.12.0"
+    "@astro-community/astro-embed-integration" "^0.13.0"
     "@astro-community/astro-embed-link-preview" "^0.3.1"
     "@astro-community/astro-embed-mastodon" "^0.1.1"
     "@astro-community/astro-embed-twitter" "^0.5.11"
@@ -4877,10 +4883,10 @@ undici-types@~7.16.0:
   resolved "https://registry.npmjs.org/undici-types/-/undici-types-7.16.0.tgz"
   integrity sha512-Zz+aZWSj8LE6zoxD+xrjh4VfkIG8Ya6LvYkZqtUQGJPZjYl53ypCaUwWqo7eI0x66KBGeRo+mlBEkMSeSZ38Nw==
 
-unicode-segmenter@^0.14.5:
-  version "0.14.5"
-  resolved "https://registry.npmjs.org/unicode-segmenter/-/unicode-segmenter-0.14.5.tgz"
-  integrity sha512-jHGmj2LUuqDcX3hqY12Ql+uhUTn8huuxNZGq7GvtF6bSybzH3aFgedYu/KTzQStEgt1Ra2F3HxadNXsNjb3m3g==
+unicode-segmenter@^0.17.0:
+  version "0.17.3"
+  resolved "https://registry.yarnpkg.com/unicode-segmenter/-/unicode-segmenter-0.17.3.tgz#218b72f9182b9b3533017958eee4b0c543b8fd60"
+  integrity sha512-hKZwqBjJDmqNrq1+LjDxck1qLzJFcLLJM2Xq92ORRHOuau6GSHeELmn+uyk6zNH1CK9mogrUJGP9WJCJUQXMAw==
 
 unified@^11.0.0, unified@^11.0.4, unified@^11.0.5:
   version "11.0.5"
@@ -5062,6 +5068,11 @@ util-deprecate@^1.0.2:
   version "1.0.2"
   resolved "https://registry.npmjs.org/util-deprecate/-/util-deprecate-1.0.2.tgz"
   integrity sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw==
+
+valibot@^1.4.2:
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/valibot/-/valibot-1.5.0.tgz#c05adda6b2823807bb0248e2952c35e1a50046fd"
+  integrity sha512-nil6AkP2TChWL43Z5uJ6GTxX01CUA+g8LWUM+N/rB9NBbkUMaUsi9PUNzlUPgoKASgmx9f7eGOYpJ04/fSa6FQ==
 
 vfile-location@^5.0.0:
   version "5.0.3"
